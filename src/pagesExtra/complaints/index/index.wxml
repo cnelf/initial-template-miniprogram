@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="label">请选择投诉原因：</view>
+  <view class="complaint-list">
+    <view
+      class="complaint-item flex items-center justify-between"
+      wx:for="{{ COMPLAINTS_REASON_LIST }}"
+      wx:key="index"
+      data-type="{{ index }}"
+      bindtap="handleSelectReason"
+    >
+      <view class="text">{{ item }}</view>
+      <van-icon name="arrow" color="#B3B3B3" size="18px" />
+    </view>
+  </view>
+</view>

@@ -1,0 +1,42 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "主页",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": ""
+        },
+        {
+          "name": "投诉-主页",
+          "pathName": "pagesExtra/complaints/index/index",
+          "query": "",
+          "scene": ""
+        },
+        {
+          "name": "投诉-表单",
+          "pathName": "pagesExtra/complaints/form/form",
+          "query": "",
+          "scene": ""
+        },
+        {
+          "name": "投诉-成功",
+          "pathName": "pagesExtra/complaints/success/success",
+          "query": "",
+          "scene": ""
+        }
+      ]
+    }
+  }
+}

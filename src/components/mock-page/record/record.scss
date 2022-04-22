@@ -1,0 +1,79 @@
+.record-wrap {
+  background-image: url("https://huaer-internal-resource.weijuju.com/huaer-zh-community/applet/images/person-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 1600rpx;
+  position: relative;
+
+  .bg-img {
+    width: 100vw;
+    height: 1600rpx;
+    position: absolute;
+    left: 0rpx;
+    top: 0rpx;
+  }
+
+  .sign-num {
+    position: absolute;
+    left: 109rpx;
+    top: 387rpx;
+    color: #ffffff;
+    font-weight: bold;
+    width: 100rpx;
+    text-align: center;
+  }
+
+  .complain {
+    position: absolute;
+    right: 90rpx;
+    top: 387rpx;
+    color: #ffffff;
+    font-weight: bold;
+    width: 100rpx;
+    text-align: center;
+  }
+
+  .my-complain {
+    position: absolute;
+    left: 54rpx;
+    top: 630rpx;
+    width: 179rpx;
+    height: 200rpx;
+  }
+
+  .my-sign {
+    position: absolute;
+    left: 290rpx;
+    top: 630rpx;
+    width: 179rpx;
+    height: 200rpx;
+  }
+
+  .more {
+    position: absolute;
+    left: 523rpx;
+    top: 630rpx;
+    width: 179rpx;
+    height: 200rpx;
+  }
+
+  .sign-recode {
+    width: 100vw;
+    height: 623rpx;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    left: 0rpx;
+    top: 883rpx;
+
+    .item {
+      border-bottom: 1rpx solid #999;
+      height: 100rpx;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40rpx;
+    }
+  }
+}

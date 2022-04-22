@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "mock-page": "/components/mock-page/index/index"
+  }
+}

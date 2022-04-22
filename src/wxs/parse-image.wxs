@@ -1,0 +1,18 @@
+function parseImagePath(obj, name) {
+  if (obj && obj.resource && obj.resource[name]) {
+    return obj.resource[name].path;
+  }
+}
+
+function parseImageStyle(obj, name) {
+  if (obj && obj.resource && obj.resource[name]) {
+    var width = obj.resource[name].width;
+    var height = obj.resource[name].height;
+    return 'width:' + width + 'rpx;' + 'height:' + height + 'rpx;';
+  }
+}
+
+module.exports = {
+  parseImagePath: parseImagePath,
+  parseImageStyle: parseImageStyle
+}

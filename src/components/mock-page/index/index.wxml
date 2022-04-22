@@ -1,0 +1,7 @@
+<view class="static-page-wrap">
+  <navigator class="create" hover-class="none" url="/components/mock-page/create/create"></navigator>
+  <navigator class="website" hover-class="none" url="/components/mock-page/website/website"></navigator>
+  <navigator class="personal-a" hover-class="none" url="/components/mock-page/record/record"></navigator>
+  <navigator class="personal-b" hover-class="none" url="/components/mock-page/record/record"></navigator>
+  <view class="tips">更多功能将陆续开放，敬请期待...</view>
+</view>

@@ -1,0 +1,60 @@
+function formatNumber(n) {
+  var str = n.toString();
+  return str[1] ? str : '0' + str;
+}
+
+function transformTime(time) {
+  if (typeof time === 'string' && time.indexOf('T') === -1) {
+    var regExp = getRegExp('-', 'g');
+    return time.replace(regExp, '/')
+  } else {
+    return time;
+  }
+}
+
+/**
+ * 格式化时间
+ * @param target 时间戳或Date字符串
+ * @param format 格式化模板
+ * @returns 格式化后的时间字符串
+ */
+function formatTime(target, format = 'Y-M-D h:m:s') {
+  if (!target) return '';
+  target = transformTime(target);
+
+  var currentDate = target ? getDate(target) : getDate();
+  var Y = formatNumber(currentDate.getFullYear());
+  var M = formatNumber(currentDate.getMonth() + 1);
+  var D = formatNumber(currentDate.getDate());
+  var h = formatNumber(currentDate.getHours());
+  var m = formatNumber(currentDate.getMinutes());
+  var s = formatNumber(currentDate.getSeconds());
+
+  var strTime = format.replace('Y', Y);
+  strTime = strTime.replace('M', M);
+  strTime = strTime.replace('D', D);
+  strTime = strTime.replace('h', h);
+  strTime = strTime.replace('m', m);
+  strTime = strTime.replace('s', s);
+
+  return strTime;
+}
+
+function formatCommentTime(date) {
+  var target = transformTime(date);
+  var targetData = getDate(target).getTime();
+  var currentDate = getDate().getTime();
+  var diff = currentDate - targetData;
+  if (diff < 1000 * 60) {
+    return '刚刚';
+  } else if (diff < 1000 * 60 * 60) {
+    return Math.floor(diff / 1000 / 60) + '分钟前'
+  } else {
+    return formatTime(target, 'M-D h:m');
+  }
+}
+
+module.exports = {
+  formatTime: formatTime,
+  formatCommentTime: formatCommentTime
+}

@@ -1,0 +1,6 @@
+<view class="container">
+  <image class="icon-success" mode="widthFix" src="../images/icon-success.png" />
+  <view class="title">投诉成功</view>
+  <view class="desc">感谢你的参与，我们会认真处理你的投诉反馈，尽快修复和完善相关功能。</view>
+  <button class="reset-btn btn-primary" bindtap="handleConfirm">确定</button>
+</view>

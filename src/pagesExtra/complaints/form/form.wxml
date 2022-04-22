@@ -1,0 +1,51 @@
+<view class="container">
+  <view class="form">
+    <view class="form-item">
+      <view class="label flex items-center">
+        <image class="icon-star-red" mode="widthFix" src="../images/icon-star-red.png" />
+        <view class="text">投诉描述</view>
+      </view>
+      <view class="textarea-wrapper">
+        <textarea
+          class="textarea"
+          placeholder="请在这里填写投诉/申诉描述"
+          placeholder-style="color: #CECECE;"
+          maxlength="200"
+          data-key="complainContent"
+          value="{{ form.complainContent }}"
+          bindinput="handleInput"
+        />
+        <view class="word-count">{{ form.complainContent.length }}/200</view>
+      </view>
+      <view wx:if="{{ errorMessage.complainContent }}" class="verify-area flex items-center">
+        <image class="icon-warn-red" mode="widthFix" src="../images/icon-warn-red.png" />
+        <view class="error-message">{{ errorMessage.complainContent }}</view>
+      </view>
+    </view>
+    <view class="form-item">
+      <view class="label flex items-center">
+        <image class="icon-star-red" mode="widthFix" src="../images/icon-star-red.png" />
+        <view class="text">联系方式</view>
+      </view>
+      <view class="input-wrapper flex items-center">
+        <input
+          class="input"
+          placeholder="请填写你的联系方式，以便联系"
+          placeholder-style="color: #CECECE;"
+          maxlength="11"
+          data-key="tel"
+          value="{{ form.tel }}"
+          bindinput="handleInput"
+        />
+      </view>
+      <view wx:if="{{ errorMessage.tel }}" class="verify-area flex items-center">
+        <image class="icon-warn-red" mode="widthFix" src="../images/icon-warn-red.png" />
+        <view class="error-message">{{ errorMessage.tel }}</view>
+      </view>
+    </view>
+  </view>
+  <view class="btn-group">
+    <button class="reset-btn btn-primary" bindtap="handleSubmit">提交</button>
+    <button class="reset-btn btn-sub" bindtap="handleNavBack">上一步</button>
+  </view>
+</view>

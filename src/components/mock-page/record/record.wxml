@@ -1,0 +1,14 @@
+<view class="record-wrap">
+  <view class='sign-num'>{{ list.length }}</view>
+  <view class='complain'>1</view>
+  <navigator class="my-complain" hover-class="none" url="/components/mock-page/website/website" role="navigation"></navigator>
+  <view class='my-sign' bindtap="mySign"></view>
+  <view class='more' bindtap="more"></view>
+  <view class='sign-recode'>
+    <view wx:if="{{ list.length === 0 }}" style="text-align: center;">还没有签到信息~</view>
+    <view wx:for="{{ list }}" wx:key="index" class="item">
+      <text style="word-break: break-all;">主题：{{ item.info }}</text>
+      <text style="margin-left: 5px;">{{ item.date }}</text>
+    </view>
+  </view>
+</view>

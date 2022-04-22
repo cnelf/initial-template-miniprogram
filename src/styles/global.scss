@@ -1,0 +1,103 @@
+@import './flex.scss';
+@import './mixin.scss';
+@import './colors.scss';
+
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+  font-size: 28rpx;
+  color: $text-color;
+  background: $bg-color;
+}
+
+image {
+  vertical-align: top;
+}
+
+.bg-primary {
+  background: $primary;
+}
+
+.bg-success {
+  background: $success;
+}
+
+.bg-danger {
+  background: $danger;
+}
+
+.bg-warning {
+  background: $warning;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-overflow-2 {
+  @include text-overflow(2);
+}
+
+.reset-btn {
+  padding: 0;
+  line-height: inherit;
+  border-radius: 0;
+  margin: 0;
+  background-color: inherit;
+  color: inherit;
+  font-size: inherit;
+
+  &::after {
+    display: none;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+// Retina 屏幕下的 1px 边框
+.hairline-top,
+.hairline-right,
+.hairline-bottom,
+.hairline-left,
+.hairline-surround {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    bottom: -50%;
+    left: -50%;
+    content: '';
+    border: 0 solid #ebedf0;
+    transform-origin: center;
+    transform: scale(0.5);
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+}
+
+.hairline-top::after {
+  border-top-width: 1px;
+}
+
+.hairline-right::after {
+  border-right-width: 1px;
+}
+
+.hairline-bottom::after {
+  border-bottom-width: 1px;
+}
+
+.hairline-left::after {
+  border-left-width: 1px;
+}
+
+.hairline-surround::after {
+  border-width: 1px;
+}
