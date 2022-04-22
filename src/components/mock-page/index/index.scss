@@ -1,0 +1,51 @@
+.static-page-wrap {
+  background-image: url("https://huaer-internal-resource.weijuju.com/huaer-zh-community/applet/images/bg-optimized.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  .create {
+    width: 690rpx;
+    height: 290rpx;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 175rpx;
+  }
+
+  .website {
+    width: 330rpx;
+    height: 185rpx;
+    position: absolute;
+    left: 30rpx;
+    top: 495rpx;
+  }
+
+  .personal-a {
+    width: 330rpx;
+    height: 185rpx;
+    position: absolute;
+    right: 30rpx;
+    top: 495rpx;
+  }
+
+  .personal-b {
+    width: 650rpx;
+    height: 50rpx;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 732rpx;
+  }
+
+  .tips {
+    font-size: 26rpx;
+    color: #565756;
+    position: absolute;
+    text-align: center;
+    width: 100vw;
+    top: 835rpx;
+  }
+}

@@ -1,0 +1,28 @@
+<view
+  wx:if="{{ loading }}"
+  class="page-skeleton"
+  style="top: {{ top }}px; left: {{ left }}px; width: {{ windowWidth }}px; height: {{ windowHeight }}px; background-color: {{ bgColor }};"
+  catchtouchmove="noop"
+>
+  <view
+    wx:for="{{ circleNodes }}"
+    wx:key="index"
+    class="el-skeleton el-skeleton-circle {{ animation ? 'skeleton-fade' : '' }}"
+    style="top: {{ item.top - top }}px; left: {{ item.left - left }}px; width: {{ item.width }}px; height: {{ item.height }}px; background-color: {{ elColor }};"
+  >
+  </view>
+  <view
+    wx:for="{{ RectNodes }}"
+    wx:key="index"
+    class="el-skeleton el-skeleton-rect {{ animation ? 'skeleton-fade' : '' }}"
+    style="top: {{ item.top - top }}px; left: {{ item.left - left }}px; width: {{ item.width }}px; height: {{ item.height }}px; background-color: {{ elColor }};"
+  >
+  </view>
+  <view
+    wx:for="{{ filletNodes }}"
+    wx:key="index"
+    class="el-skeleton el-skeleton-fillet {{ animation ? 'skeleton-fade' : '' }}"
+    style="top: {{ item.top - top }}px; left: {{ item.left - left }}px; width: {{ item.width }}px; height: {{ item.height }}px; background-color: {{ elColor }}; border-radius: {{ borderRadius }}rpx;"
+  >
+  </view>
+</view>

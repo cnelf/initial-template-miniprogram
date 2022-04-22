@@ -1,0 +1,30 @@
+@keyframes open {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.component-modal .mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .45);
+  z-index: 1000;
+}
+
+.component-modal .content {
+  position: fixed;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  z-index: 1001;
+}
+
+.component-modal.open .content, .component-modal.open .mask {
+  animation: open 400ms;
+}

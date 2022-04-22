@@ -1,0 +1,3 @@
+<view wx:if="{{ !$state.loading }}" class="container">
+  <mock-page />
+</view>

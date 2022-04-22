@@ -1,0 +1,11 @@
+<view wx:if="{{ showComponent }}" class="component-modal {{ animate }}">
+  <view class="mask" wx:if="{{ mask && show }}" bindtap="handleClose" style="{{ maskStyle }}" />
+  <view class="content body-class">
+    <view class="modal-content content-class">
+      <slot name="content" />
+    </view>
+    <view class="modal-button" wx:if="{{ showButton }}">
+      <slot name="button" />
+    </view>
+  </view>
+</view>

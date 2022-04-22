@@ -1,0 +1,28 @@
+<view class="component-pagination">
+  <scroll-view
+    class="scroll-view"
+    style="padding-bottom: {{ openSafeBottom? safeBottom : 0 }}rpx"
+    scroll-y="{{ true }}"
+    scroll-top="{{ scrollTop }}"
+    scroll-with-animation="{{ true }}"
+    lower-threshold="20"
+    refresher-enabled="{{ refresherEnabled }}"
+    refresher-triggered="{{ refresherTriggered }}"
+    bindscroll="handleScroll"
+    bindscrolltolower="handleLoadMore"
+    bindrefresherrefresh="handleRefresherRefresh"
+  >
+    <view class="scroll-inner">
+      <slot></slot>
+    </view>
+    <view class="loading-wrapper">
+      <van-loading size="20px" type="spinner" wx:if="{{ loading }}">加载中...</van-loading>
+      <view wx:elif="{{ !ended }}">上滑加载更多</view>
+      <view wx:else>没有更多了 ~</view>
+    </view>
+  </scroll-view>
+  <view wx:if="{{ scrollTopEnabled && scrollTopTriggered }}" class="back-to-top" bindtap="handleScrollTop">
+    <van-icon name="arrow-up" size="16px" />
+    <view class="text-top">Top</view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+<view
+  wx:if="{{ show }}"
+  class="component-add-to-my-miniprogram"
+  style="right: calc(100vw - {{ menu.right }}px); top: {{ customNavbar ? menu.top + menu.height + 20 : 10 }}px;"
+  bindtap="handleClose"
+>
+  <view class="content">
+    <view
+      class="triangle"
+      style="right: {{ menu.width / 2 + menu.width / 4 -15 }}px"
+    ></view>
+    <text>{{ text }}</text>
+  </view>
+</view>
