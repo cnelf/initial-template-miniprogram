@@ -1,5 +1,5 @@
 const computedBehavior = require('miniprogram-computed').behavior;
-import { uiStore } from '../../store/index';
+import { userAgent } from '@/utils/index';
 
 Component({
   behaviors: [computedBehavior],
@@ -61,7 +61,7 @@ Component({
 
   lifetimes: {
     attached() {
-      this.setData({ safeBottom: uiStore.safeBottom });
+      this.setData({ safeBottom: userAgent.safeBottom });
     }
   },
 

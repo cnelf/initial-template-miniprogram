@@ -1,4 +1,4 @@
-import { COMPLAINTS_REASON_LIST } from '@constants/index';
+import { COMPLAINTS_REASON_LIST } from '@/constants/index';
 
 Page({
   data: {

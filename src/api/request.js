@@ -1,7 +1,7 @@
 import env from './env';
-import Fly from '@lib/flyio';
-import { AUTH_TOKEN_KEY } from '@constants/index';
-import { authStore } from '@store/index';
+import Fly from '@/lib/flyio';
+import { AUTH_TOKEN_KEY } from '@/constants/index';
+import { userAuth } from '@/utils/index';
 
 const fly = new Fly();
 
@@ -10,7 +10,7 @@ fly.config.timeout = 30000;
 
 fly.interceptors.request.use((request) => {
   fly.lock();
-  return authStore
+  return userAuth
     .checkToken(request)
     .then(() => {
       request.headers['AuthToken'] = wx.getStorageSync(AUTH_TOKEN_KEY);
@@ -32,7 +32,7 @@ fly.interceptors.response.use(
       // token已失效
       if (data.code === 3001 && retryTimes--) {
         fly.lock();
-        return authStore
+        return userAuth
           .login()
           .finally(() => {
             fly.unlock();
@@ -53,7 +53,7 @@ fly.interceptors.response.use(
     // token已失效
     if (response.status === 401 && retryTimes--) {
       fly.lock();
-      return authStore
+      return userAuth
         .login()
         .finally(() => {
           fly.unlock();

@@ -1,15 +1,15 @@
-import { AUTH_TOKEN_KEY, LAST_TOKEN_TIME_KEY } from '@constants/index';
-import { fetchAuthToken, fetchAuthTel } from '@api/index';
-import { autoLoading } from '@utils/index';
-import Fly from '@lib/flyio';
-import env from '@api/env';
+import { AUTH_TOKEN_KEY, LAST_TOKEN_TIME_KEY } from '@/constants/index';
+import { fetchAuthToken, fetchAuthTel } from '@/api/index';
+import { autoLoading } from '@/utils/index';
+import Fly from '@/lib/flyio';
+import env from '@/api/env';
 
 const fly = new Fly();
 
 fly.config.baseURL = env.baseURL;
 fly.config.timeout = 30000;
 
-class AuthStore {
+class UserAuth {
   constructor() {
     this.$authToken = wx.getStorageSync(AUTH_TOKEN_KEY);
   }
@@ -98,4 +98,4 @@ class AuthStore {
   }
 }
 
-export const authStore = new AuthStore();
+export const userAuth = new UserAuth();

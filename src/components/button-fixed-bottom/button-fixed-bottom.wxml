@@ -5,7 +5,7 @@
     </view>
     <slot wx:else name="content" />
   </view>
-  <view id="footer" class="box-footer footer-class" style="background-color: {{ bgColor }}; padding-bottom: {{ iphoneXPadding  }}px; z-index: {{ footerZIndex }};" wx:if="{{ showFooter }}">
+  <view id="footer" class="box-footer footer-class" style="background-color: {{ bgColor }}; padding-bottom: {{ iphoneXPadding  }}rpx; z-index: {{ footerZIndex }};" wx:if="{{ showFooter }}">
     <slot name="footer" />
   </view>
 </view>

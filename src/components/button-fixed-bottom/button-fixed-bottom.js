@@ -1,5 +1,5 @@
-import { uiStore } from '../../store/index';
-import _ from '../../lib/lodash';
+import { userAgent } from '@/utils/index';
+import _ from '@/lib/lodash';
 
 Component({
   externalClasses: ['footer-class', 'content-class', 'component-class'],
@@ -29,12 +29,13 @@ Component({
 
   data: {
     height: 0,
-    contentHeight: uiStore.systemInfo.windowHeight,
+    contentHeight: userAgent.systemInfo.windowHeight,
     showButton: true,
-    iphoneXPadding: uiStore.isIphoneX ? 32 : 0
+    iphoneXPadding: userAgent.isIphoneX ? 32 : 0
   },
 
   systemInfo: null,
+
   calcTimer: 0,
 
   observers: {
@@ -52,16 +53,6 @@ Component({
   },
 
   methods: {
-    async getSystemInfo() {
-      try {
-        const systemInfo = await uiStore.fetchData();
-        this.systemInfo = systemInfo;
-        return systemInfo;
-      } catch (e) {
-        this.systemInfo = uiStore.fetchDataSync();
-      }
-    },
-
     calcHeight() {
       clearTimeout(this.calcTimer);
       const calc = () => {
@@ -71,7 +62,7 @@ Component({
           .boundingClientRect(async (res) => {
             const height = _.get(res, 'height', 0);
             if (!this.systemInfo) {
-              await this.getSystemInfo();
+              this.systemInfo = userAgent.systemInfo;
             }
             this.setData({ height, contentHeight: this.systemInfo.windowHeight - height });
           })

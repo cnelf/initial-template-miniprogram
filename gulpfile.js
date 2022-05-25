@@ -33,19 +33,8 @@ const watchOptions = { events: ['add', 'change'] };
 // https://github.com/mcc108/gulp-mp-npm/issues/8
 const mpNpmOptions = { npmDirname: 'miniprogram_npm', fullExtract: ['@vant/weapp/wxs'] };
 
-const _join = (dirname) => {
-  return path.join(process.cwd(), 'src', dirname);
-};
 const aliasConfig = {
-  '@api': _join('api'),
-  '@components': _join('components'),
-  '@constants': _join('constants'),
-  '@images': _join('images'),
-  '@lib': _join('lib'),
-  '@store': _join('store'),
-  '@styles': _join('styles'),
-  '@utils': _join('utils'),
-  '@wxs': _join('wxs')
+  '@': path.join(process.cwd(), 'src')
 };
 
 // 文件匹配路径

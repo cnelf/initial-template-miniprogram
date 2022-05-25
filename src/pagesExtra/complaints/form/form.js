@@ -1,6 +1,6 @@
 import Schema from 'async-validator';
-import { autoLoading } from '@utils/index';
-import { fetchActComplainInfo } from '@api/index';
+import { autoLoading } from '@/utils/index';
+import { fetchActComplainInfo } from '@/api/index';
 
 Page({
   data: {

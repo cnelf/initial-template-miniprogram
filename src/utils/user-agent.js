@@ -1,4 +1,4 @@
-class UiStore {
+class UserAgent {
   constructor() {
     this.setSystemInfo();
   }
@@ -47,4 +47,4 @@ class UiStore {
   }
 }
 
-export const uiStore = new UiStore();
+export const userAgent = new UserAgent();
