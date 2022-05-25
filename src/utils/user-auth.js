@@ -25,13 +25,9 @@ class UserAuth {
   }
 
   async login() {
-    const app = getApp();
-    const { actId } = app.store.getState();
     const { code } = await wx.login();
     const { data } = await fly.get('/applet/oauth/getAuthToken', {
       authCode: code,
-      adminUid: env.adminUid,
-      activityId: actId,
       platformType: 0
     });
     if (data.code === 200) {
@@ -55,8 +51,6 @@ class UserAuth {
 
   // 授权用户基本信息
   async authUserProfile() {
-    const app = getApp();
-    const { actId } = app.store.getState();
     // login方法不能使用await，否则调不起授权
     let code = '';
     wx.login().then((res) => {
@@ -66,8 +60,6 @@ class UserAuth {
     if (encryptedData && iv) {
       await autoLoading(
         fetchAuthToken({
-          adminUid: env.adminUid,
-          activityId: actId,
           platformType: 0,
           authCode: code,
           encryptInfo: encryptedData,

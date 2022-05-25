@@ -3,23 +3,20 @@ const {
 } = wx.getAccountInfoSync();
 
 const config = {
+  // 开发版
   develop: {
-    // 开发版
     baseURL: 'http://yapi.weijuju.com/mock/76',
-    staticResPath: 'http://test-resource-platform.socialmind.com.cn/huaer-aum-platform/admin/wx-applet-images',
-    adminUid: 1
+    staticResPath: 'http://test-resource-platform.socialmind.com.cn/huaer-aum-platform/admin/wx-applet-images'
   },
+  // 体验版
   trial: {
-    // 体验版
     baseURL: 'http://huaer-aum-test-mobile.socialmind.com.cn',
-    staticResPath: 'http://test-resource-platform.socialmind.com.cn/huaer-aum-platform/admin/wx-applet-images',
-    adminUid: 1
+    staticResPath: 'http://test-resource-platform.socialmind.com.cn/huaer-aum-platform/admin/wx-applet-images'
   },
+  // 正式版
   release: {
-    // 正式版
     baseURL: '',
-    staticResPath: '',
-    adminUid: 1
+    staticResPath: ''
   }
 };
 

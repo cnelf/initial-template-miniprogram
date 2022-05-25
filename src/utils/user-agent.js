@@ -1,20 +1,21 @@
 class UserAgent {
   constructor() {
-    this.setSystemInfo();
+    this.getSystemInfo();
+    this.getMenuButtonRectInfo();
   }
 
-  setSystemInfo() {
+  getSystemInfo() {
     try {
       this.systemInfo = wx.getSystemInfoSync();
-    } catch (error) {
+    } catch {
       this.systemInfo = wx.getSystemInfoSync();
     } finally {
       this.systemInfo.platform || (this.systemInfo = wx.getSystemInfoSync());
     }
   }
 
-  isFullScreenModel() {
-    return this.isIphone11 || this.isIphoneX;
+  getMenuButtonRectInfo() {
+    this.menuButtonRectInfo = wx.getMenuButtonBoundingClientRect();
   }
 
   /**
