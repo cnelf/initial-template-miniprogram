@@ -6,7 +6,7 @@ function formatNumber(n) {
 function transformTime(time) {
   if (typeof time === 'string' && time.indexOf('T') === -1) {
     var regExp = getRegExp('-', 'g');
-    return time.replace(regExp, '/')
+    return time.replace(regExp, '/');
   } else {
     return time;
   }
@@ -48,7 +48,7 @@ function formatCommentTime(date) {
   if (diff < 1000 * 60) {
     return '刚刚';
   } else if (diff < 1000 * 60 * 60) {
-    return Math.floor(diff / 1000 / 60) + '分钟前'
+    return Math.floor(diff / 1000 / 60) + '分钟前';
   } else {
     return formatTime(target, 'M-D h:m');
   }
@@ -57,4 +57,4 @@ function formatCommentTime(date) {
 module.exports = {
   formatTime: formatTime,
   formatCommentTime: formatCommentTime
-}
+};

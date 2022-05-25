@@ -24,7 +24,7 @@ const dist = '.miniprogram';
 const sourcemap = {
   ts: true, // 是否开启 ts sourcemap
   less: true, // 是否开启 less sourcemap
-  sass: true, // 是否开启 less sourcemap
+  sass: true // 是否开启 less sourcemap
 };
 // options
 const srcOptions = { base: src };
@@ -55,18 +55,22 @@ const globs = {
   less: `${src}/**/*.less`, // 匹配 less 文件
   sass: `${src}/**/*.scss`, // 匹配 sass 文件
   wxss: `${src}/**/*.wxss`, // 匹配 wxss 文件
-  image: `${src}/**/*.{png,jpg,jpeg,gif,svg}`, // 匹配 image 文件
+  image: `${src}/**/*.{png,jpg,jpeg,gif,svg}` // 匹配 image 文件
 };
-globs.copy = [`${src}/**`,
-  `!${globs.ts}`, `!${globs.js}`, `!${globs.json}`,
-  `!${globs.less}`, `!${globs.sass}`, `!${globs.wxss}`,
-  `!${globs.image}`]; // 匹配需要拷贝的文件
+globs.copy = [
+  `${src}/**`,
+  `!${globs.ts}`,
+  `!${globs.js}`,
+  `!${globs.json}`,
+  `!${globs.less}`,
+  `!${globs.sass}`,
+  `!${globs.wxss}`,
+  `!${globs.image}`
+]; // 匹配需要拷贝的文件
 
 // 包装 gulp.lastRun, 引入文件 ctime 作为文件变动判断另一标准
 // https://github.com/gulpjs/vinyl-fs/issues/226
-const since = task => (
-  file => (gulp.lastRun(task) > file.stat.ctime ? gulp.lastRun(task) : 0)
-);
+const since = (task) => (file) => gulp.lastRun(task) > file.stat.ctime ? gulp.lastRun(task) : 0;
 
 /** `gulp clear`
  * 清理文件
@@ -81,112 +85,95 @@ const clearCache = () => cache.clearAll();
 /** `gulp copy`
  * 清理
  * */
-const copy = () => gulp.src(
-  globs.copy,
-  { ...srcOptions, since: since(copy) },
-)
-  .pipe(changed(dist)) // 过滤掉未改变的文件
-  .pipe(alias(aliasConfig))
-  .pipe(gulp.dest(dist));
+const copy = () =>
+  gulp
+    .src(globs.copy, { ...srcOptions, since: since(copy) })
+    .pipe(changed(dist)) // 过滤掉未改变的文件
+    .pipe(alias(aliasConfig))
+    .pipe(gulp.dest(dist));
 
 /** `gulp ts`
  * 编译ts
  * */
 const tsProject = gulpTs.createProject(resolve('tsconfig.json'));
-const ts = () => gulp.src(
-  globs.ts,
-  srcOptions,
-)
-  .pipe(gulpIf(sourcemap.ts, sourcemaps.init()))
-  .pipe(tsProject()) // 编译ts
-  .pipe(alias(aliasConfig))
-  .pipe(mpNpm(mpNpmOptions)) // 分析依赖
-  .pipe(gulpIf(sourcemap.ts, sourcemaps.write('.')))
-  .pipe(gulp.dest(dist));
+const ts = () =>
+  gulp
+    .src(globs.ts, srcOptions)
+    .pipe(gulpIf(sourcemap.ts, sourcemaps.init()))
+    .pipe(tsProject()) // 编译ts
+    .pipe(alias(aliasConfig))
+    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulpIf(sourcemap.ts, sourcemaps.write('.')))
+    .pipe(gulp.dest(dist));
 
 /** `gulp js`
  * 解析js
  * */
-const js = () => gulp.src(
-  globs.js,
-  { ...srcOptions, since: since(js) },
-)
-  .pipe(alias(aliasConfig))
-  .pipe(mpNpm(mpNpmOptions)) // 分析依赖
-  .pipe(gulp.dest(dist));
+const js = () =>
+  gulp
+    .src(globs.js, { ...srcOptions, since: since(js) })
+    .pipe(alias(aliasConfig))
+    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulp.dest(dist));
 
 /** `gulp json`
  * 解析json
  * */
-const json = () => gulp.src(
-  globs.json,
-  { ...srcOptions, since: since(json) },
-)
-  .pipe(mpNpm(mpNpmOptions)) // 分析依赖
-  .pipe(gulp.dest(dist));
+const json = () =>
+  gulp
+    .src(globs.json, { ...srcOptions, since: since(json) })
+    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulp.dest(dist));
 
 /** `gulp less`
  * 编译less
  * */
-const less = () => gulp.src(
-  globs.less,
-  { ...srcOptions, since: since(less) },
-)
-  .pipe(gulpIf(sourcemap.less, sourcemaps.init()))
-  .pipe(gulpLess()) // 编译less
-  .pipe(rename({ extname: '.wxss' }))
-  .pipe(alias(aliasConfig))
-  .pipe(mpNpm(mpNpmOptions)) // 分析依赖
-  .pipe(gulpIf(sourcemap.less, sourcemaps.write('.')))
-  .pipe(gulp.dest(dist));
+const less = () =>
+  gulp
+    .src(globs.less, { ...srcOptions, since: since(less) })
+    .pipe(gulpIf(sourcemap.less, sourcemaps.init()))
+    .pipe(gulpLess()) // 编译less
+    .pipe(rename({ extname: '.wxss' }))
+    .pipe(alias(aliasConfig))
+    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulpIf(sourcemap.less, sourcemaps.write('.')))
+    .pipe(gulp.dest(dist));
 
 /** `gulp sass`
  * 编译sass
  * */
-const sass = () => gulp.src(
-  globs.sass,
-  { ...srcOptions, since: since(sass) },
-)
-  .pipe(gulpIf(sourcemap.sass, sourcemaps.init()))
-  .pipe(gulpSass()) // 编译sass
-  .pipe(rename({ extname: '.wxss' }))
-  .pipe(alias(aliasConfig))
-  .pipe(mpNpm(mpNpmOptions)) // 分析依赖
-  .pipe(gulpIf(sourcemap.sass, sourcemaps.write('.')))
-  .pipe(gulp.dest(dist));
+const sass = () =>
+  gulp
+    .src(globs.sass, { ...srcOptions, since: since(sass) })
+    .pipe(gulpIf(sourcemap.sass, sourcemaps.init()))
+    .pipe(gulpSass()) // 编译sass
+    .pipe(rename({ extname: '.wxss' }))
+    .pipe(alias(aliasConfig))
+    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulpIf(sourcemap.sass, sourcemaps.write('.')))
+    .pipe(gulp.dest(dist));
 
 /** `gulp wxss`
  * 解析wxss
  * */
-const wxss = () => gulp.src(
-  globs.wxss,
-  { ...srcOptions, since: since(wxss) },
-)
-  .pipe(alias(aliasConfig))
-  .pipe(mpNpm(mpNpmOptions)) // 分析依赖
-  .pipe(gulp.dest(dist));
+const wxss = () =>
+  gulp
+    .src(globs.wxss, { ...srcOptions, since: since(wxss) })
+    .pipe(alias(aliasConfig))
+    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulp.dest(dist));
 
 /** `gulp image`
  * 压缩图片
  * */
-const image = () => gulp.src(
-  globs.image,
-  { ...srcOptions, since: since(image) },
-)
-  .pipe(cache(gulpTinyPng()))
-  .pipe(gulp.dest(dist));
+const image = () =>
+  gulp
+    .src(globs.image, { ...srcOptions, since: since(image) })
+    .pipe(cache(gulpTinyPng()))
+    .pipe(gulp.dest(dist));
 
 // 不清理 dist 的构建
-const _build = gulp.parallel(
-  copy,
-  ts,
-  js,
-  json,
-  less,
-  sass,
-  wxss,
-  image,
-);
+const _build = gulp.parallel(copy, ts, js, json, less, sass, wxss, image);
 
 // 将 miniprogramRoot 配置修改为 dist 路径
 const config = async () => {
@@ -205,11 +192,11 @@ const config = async () => {
  * */
 const build = gulp.series(
   gulp.parallel(
-    clear,
+    clear
     // clearCache
   ),
   _build,
-  config,
+  config
 );
 
 /** `gulp watch`
@@ -229,12 +216,7 @@ const watch = () => {
 /** `gulp` or `gulp dev`
  * 构建并监听
  * */
-const dev = gulp.series(
-  clear,
-  _build,
-  config,
-  watch,
-);
+const dev = gulp.series(clear, _build, config, watch);
 
 // `gulp --tasks` list tasks
 module.exports = {
@@ -248,5 +230,5 @@ module.exports = {
   build,
   watch,
   dev,
-  default: dev,
+  default: dev
 };

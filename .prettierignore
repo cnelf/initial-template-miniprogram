@@ -2,4 +2,3 @@
 scripts/*
 node_modules/*
 src/lib/*
-src/wxs/*

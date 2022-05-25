@@ -9,4 +9,4 @@ function includes(arr, item) {
 module.exports = {
   slice: slice,
   includes: includes
-}
+};

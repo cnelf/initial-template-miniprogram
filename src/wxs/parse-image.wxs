@@ -15,4 +15,4 @@ function parseImageStyle(obj, name) {
 module.exports = {
   parseImagePath: parseImagePath,
   parseImageStyle: parseImageStyle
-}
+};
