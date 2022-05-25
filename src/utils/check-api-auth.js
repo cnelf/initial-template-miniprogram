@@ -32,7 +32,7 @@ const SCOPES = {
  * @param  {Boolean} isAuto         是否自动调用相对应的API，默认 true
  * @return {Object|Boolean}         返回API调用后的返回值，如果 isAuto 为 false，打开权限后return true，用户拒绝 return false
  */
-async function checkApiAuth(scope, options = {}, isAuto = true) {
+export async function checkApiAuth(scope, options = {}, isAuto = true) {
   const fullScope = SCOPES[scope];
   const { authSetting } = await wx.getSetting();
   const isFirst = !Object.prototype.hasOwnProperty.call(authSetting, `scope.${fullScope}`);
@@ -60,5 +60,3 @@ async function checkApiAuth(scope, options = {}, isAuto = true) {
     throw e;
   }
 }
-
-export default checkApiAuth;

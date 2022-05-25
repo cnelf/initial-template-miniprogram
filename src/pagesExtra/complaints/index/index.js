@@ -11,6 +11,6 @@ Page({
 
   handleSelectReason(e) {
     const { type } = e.currentTarget.dataset;
-    wx.$history.nav(`/pagesExtra/complaints/form/form?type=${type}&name=${this.name}`);
+    wx.$router.nav(`/pagesExtra/complaints/form/form?type=${type}&name=${this.name}`);
   }
 });

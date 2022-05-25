@@ -2,6 +2,6 @@ Page({
   data: {},
 
   handleConfirm() {
-    wx.$history.navigateBack({ delta: 2 });
+    wx.$router.navigateBack({ delta: 2 });
   }
 });

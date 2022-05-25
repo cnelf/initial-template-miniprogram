@@ -8,8 +8,8 @@ App({
   async onLaunch() {
     promisifyAll();
     wx.$env = env;
-    wx.$history = history;
+    wx.$router = history;
     return relaunchCurrentPage();
   },
-  store
+  store,
 });
