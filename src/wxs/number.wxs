@@ -1,0 +1,13 @@
+function toFixed(num, digits = 2) {
+  var number = +num || 0;
+  return number.toFixed(digits);
+}
+
+function transformCent(cent = 0) {
+  return toFixed(cent / 100);
+}
+
+module.exports = {
+  toFixed,
+  transformCent
+};
