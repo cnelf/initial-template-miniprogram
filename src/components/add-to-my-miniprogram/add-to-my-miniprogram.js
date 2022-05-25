@@ -45,7 +45,7 @@ Component({
 
     detached() {
       clearTimeout(this.timer);
-    },
+    }
   },
 
   methods: {

@@ -3,7 +3,7 @@ import qs from 'qs';
 class History {
   constructor() {
     this.tabPages = []; // tabBar页
-    this.tabQueryList  = {}; // tanBar页参数
+    this.tabQueryList = {}; // tanBar页参数
   }
 
   get currentPage() {
@@ -20,7 +20,7 @@ class History {
     const onlyPath = url.split('?')[0];
     const reg = new RegExp(onlyPath);
 
-    return !!this.tabPages.find(item => reg.test(item));
+    return !!this.tabPages.find((item) => reg.test(item));
   }
 
   goHome() {

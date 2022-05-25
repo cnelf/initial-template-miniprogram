@@ -2,7 +2,7 @@
   .form {
     margin-top: 30rpx;
     padding: 28rpx 30rpx 30rpx;
-    background: #FFFFFF;
+    background: #fff;
 
     .form-item:last-of-type {
       margin-top: 20rpx;
@@ -10,7 +10,7 @@
 
     .label {
       font-size: 32rpx;
-      color: #333333;
+      color: #333;
 
       .icon-star-red {
         margin-right: 8rpx;
@@ -21,12 +21,12 @@
 
     .textarea-wrapper {
       margin-top: 20rpx;
+      box-sizing: border-box;
+      border: 1rpx solid #e6e6e6;
+      border-radius: 10rpx;
       padding: 20rpx 24rpx 56rpx;
       width: 100%;
       height: 280rpx;
-      border: 1rpx solid #E6E6E6;
-      border-radius: 10rpx;
-      box-sizing: border-box;
 
       .textarea {
         width: 100%;
@@ -35,9 +35,9 @@
       }
 
       .word-count {
-        text-align: right;
         font-size: 24rpx;
-        color: #CECECE;
+        text-align: right;
+        color: #cecece;
       }
     }
 
@@ -52,18 +52,18 @@
       .error-message {
         margin-left: 4rpx;
         font-size: 22rpx;
-        color: #EE3F1B;
+        color: #ee3f1b;
       }
     }
 
     .input-wrapper {
       margin-top: 20rpx;
+      box-sizing: border-box;
+      border: 1rpx solid #e6e6e6;
+      border-radius: 8rpx;
       padding: 0 24rpx;
       width: 100%;
       height: 76rpx;
-      border: 1rpx solid #E6E6E6;
-      box-sizing: border-box;
-      border-radius: 8rpx;
 
       .input {
         width: 100%;
@@ -72,37 +72,37 @@
   }
 
   .btn-group {
-    margin: 88rpx 0;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+    margin: 88rpx 0;
 
     .btn-primary {
+      border-radius: 8rpx;
       width: 332rpx;
       height: 72rpx;
-      line-height: 72rpx;
-      border-radius: 8rpx;
-      background: #1890FF;
       font-size: 32rpx;
-      color: #FFFFFF;
+      line-height: 72rpx;
+      color: #fff;
+      background: #1890ff;
 
       &.disabled {
-        background: #E6E6E6;
-        color: #FFFFFF;
+        color: #fff;
+        background: #e6e6e6;
       }
     }
 
     .btn-sub {
       margin-top: 32rpx;
+      box-sizing: border-box;
+      border: 1rpx solid #1890ff;
+      border-radius: 8rpx;
       width: 332rpx;
       height: 72rpx;
-      line-height: 72rpx;
-      border-radius: 8rpx;
-      border: 1rpx solid #1890FF;
-      box-sizing: border-box;
       font-size: 32rpx;
-      color: #1890FF;
+      line-height: 72rpx;
+      color: #1890ff;
     }
   }
 }

@@ -2,29 +2,29 @@
   padding: 20rpx 20rpx;
 
   input {
+    margin: 10rpx;
     border: 1rpx solid #666;
     border-radius: 10rpx;
     padding: 12rpx 5rpx;
-    margin: 10rpx;
   }
 
   button {
-    width: 100%;
     margin-top: 20rpx;
-    color: #fff;
-    background-color: #60CCFE;
-    border: #60CCFE 1rpx solid;
+    border: #60ccfe 1rpx solid;
     border-radius: 10rpx;
     padding: 20rpx 0;
+    width: 100%;
+    color: #fff;
+    background-color: #60ccfe;
   }
 
   .image {
     display: block;
     margin: 30rpx auto 0;
     border: 1rpx solid #333;
+    border-radius: 10rpx;
     width: 85vw;
     height: 85vw;
-    border-radius: 10rpx;
   }
 
   .tips {

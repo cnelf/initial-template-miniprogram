@@ -38,7 +38,7 @@ Component({
   calcTimer: 0,
 
   observers: {
-    'showFooter': function(newVal) {
+    showFooter: function (newVal) {
       newVal && this.calcHeight();
     }
   },
@@ -66,16 +66,16 @@ Component({
       clearTimeout(this.calcTimer);
       const calc = () => {
         wx.createSelectorQuery()
-        .in(this)
-        .select('#footer')
-        .boundingClientRect(async (res) => {
-          const height = _.get(res, 'height', 0);
-          if (!this.systemInfo) {
-            await this.getSystemInfo();
-          }
-          this.setData({ height, contentHeight: this.systemInfo.windowHeight - height });
-        })
-        .exec();
+          .in(this)
+          .select('#footer')
+          .boundingClientRect(async (res) => {
+            const height = _.get(res, 'height', 0);
+            if (!this.systemInfo) {
+              await this.getSystemInfo();
+            }
+            this.setData({ height, contentHeight: this.systemInfo.windowHeight - height });
+          })
+          .exec();
       };
       calc();
       // 确保能拿到rect信息

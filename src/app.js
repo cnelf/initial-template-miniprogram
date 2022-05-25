@@ -11,5 +11,5 @@ App({
     wx.$router = history;
     return relaunchCurrentPage();
   },
-  store,
+  store
 });

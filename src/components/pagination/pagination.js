@@ -5,27 +5,33 @@ Component({
   behaviors: [computedBehavior],
 
   properties: {
-    current: { // 当前页
+    current: {
+      // 当前页
       type: Number,
       value: 1
     },
-    size: { // 每页条数
+    size: {
+      // 每页条数
       type: Number,
       value: 10
     },
-    total: { // 总条数
+    total: {
+      // 总条数
       type: Number,
       value: 0
     },
-    scrollTopEnabled: { // 开启回到顶部按钮
+    scrollTopEnabled: {
+      // 开启回到顶部按钮
       type: Boolean,
       value: true
     },
-    refresherEnabled: { // 开启下拉刷新
+    refresherEnabled: {
+      // 开启下拉刷新
       type: Boolean,
       value: true
     },
-    openSafeBottom: { // 开启底部安全距离
+    openSafeBottom: {
+      // 开启底部安全距离
       type: Boolean,
       value: true
     }
@@ -40,14 +46,15 @@ Component({
   },
 
   computed: {
-    ended(data) { // 已加载完
+    ended(data) {
+      // 已加载完
       const { current, size, total } = data;
       return current * size >= total;
     }
   },
 
   observers: {
-    'current': function() {
+    current: function () {
       this.setData({ loading: false });
     }
   },
@@ -80,7 +87,7 @@ Component({
     async handleRefresherRefresh() {
       const curPage = getCurrentPages().pop();
       // 当前页面必须实现initData方法
-      typeof curPage.initData === 'function' && await curPage.initData();
+      typeof curPage.initData === 'function' && (await curPage.initData());
       this.setData({ refresherTriggered: false });
     },
 

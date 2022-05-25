@@ -30,7 +30,7 @@ Component({
   },
 
   observers: {
-    'show': function(newVal) {
+    show: function (newVal) {
       this.applyAnimate(newVal);
     }
   },

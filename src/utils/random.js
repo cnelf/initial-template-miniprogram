@@ -5,9 +5,5 @@ export function randomString() {
 }
 
 export function randomFileName(fileName) {
-  return [
-    dayjs().format('YYMMDD'),
-    randomString(),
-    fileName
-  ].filter(Boolean).join('/');
+  return [dayjs().format('YYMMDD'), randomString(), fileName].filter(Boolean).join('/');
 }

@@ -7,7 +7,7 @@ import Store from 'wxministore';
 export const store = new Store({
   state: {
     loading: false,
-    actId: '',
+    actId: ''
   },
   openPart: true,
   debug: false

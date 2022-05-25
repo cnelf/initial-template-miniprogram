@@ -3,26 +3,26 @@
   height: 100%;
 
   .scroll-view {
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
   }
 
   .back-to-top {
     position: fixed;
-    bottom: 200rpx;
     right: 30rpx;
-    width: 75rpx;
-    height: 75rpx;
-    background: rgba(255,255,255, .7);
-    border: 1rpx solid #daddcf;
+    bottom: 200rpx;
+    z-index: 9;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    font-size: 22rpx;
+    align-items: center;
+    border: 1rpx solid #daddcf;
     border-radius: 50%;
-    z-index: 9;
+    width: 75rpx;
+    height: 75rpx;
+    font-size: 22rpx;
+    background: rgba(255, 255, 255, 0.7);
 
     .text-top {
       margin-top: -4rpx;
@@ -30,9 +30,9 @@
   }
 
   .loading-wrapper {
-    padding: 30rpx 0;
     display: flex;
     justify-content: center;
+    padding: 30rpx 0;
     font-size: 28rpx;
     color: #969799;
   }

@@ -1,19 +1,19 @@
 .website-wrap {
-  background-image: linear-gradient(to bottom, rgba(96, 204, 254, 0.774) 5%, #c2eafc);
   width: 100vw;
   min-height: 100vh;
+  background-image: linear-gradient(to bottom, rgba(96, 204, 254, 0.774) 5%, #c2eafc);
 
   .image {
-    width: 100%;
-    padding: 15rpx;
+    margin-bottom: 10rpx;
     box-sizing: border-box;
     border-radius: 8rpx;
-    margin-bottom: 10rpx;
+    padding: 15rpx;
+    width: 100%;
   }
 
   .content {
-    color: #333;
-    padding: 0 18rpx;
     margin-bottom: 15rpx;
+    padding: 0 18rpx;
+    color: #333;
   }
 }

@@ -3,7 +3,7 @@ export function showToast(params) {
     title: '',
     icon: 'none',
     mask: true,
-    duration: 1500,
+    duration: 1500
   };
   if (typeof params === 'string') {
     Object.assign(options, { title: params });
@@ -11,7 +11,9 @@ export function showToast(params) {
     Object.assign(options, params);
   }
   wx.showToast(options);
-  return new Promise(resolve => setTimeout(resolve, options.duration));
+  return new Promise((resolve) => {
+    setTimeout(resolve, options.duration);
+  });
 }
 
 export const alert = (content, opts = {}) => {
@@ -34,7 +36,7 @@ export function autoLoading(target, options = {}) {
     .finally(() => {
       wx.hideLoading();
     })
-    .catch(err => {
+    .catch((err) => {
       if (options.isRetry) {
         retryHandler(err, target, options);
       } else {
@@ -47,15 +49,17 @@ function retryHandler(err, target, options) {
   const ignoreErrors = /(cancel|ignore|请先登录)/i;
   const msg = err.mess || err.message || err.errMsg;
   if (msg && !ignoreErrors.test(msg)) {
-    return wx.showModal({
-      title: '提示',
-      content: msg,
-      confirmText: '重试'
-    }).then(({ confirm }) => {
-      if (confirm) {
-        return autoLoading(target, options);
-      }
-    });
+    return wx
+      .showModal({
+        title: '提示',
+        content: msg,
+        confirmText: '重试'
+      })
+      .then(({ confirm }) => {
+        if (confirm) {
+          return autoLoading(target, options);
+        }
+      });
   }
   throw err;
 }
@@ -66,9 +70,10 @@ export function errHandler(err) {
   let msg = err.mess || err.message || err.errMsg;
   msg = timeoutErrors.test(msg) ? '网络好像出了点问题，请稍后再试' : msg;
   if (!ignoreErrors.test(msg)) {
-    msg && alert(msg, {
-      title: '请求失败',
-    });
+    msg &&
+      alert(msg, {
+        title: '请求失败'
+      });
   }
   throw err;
 }

@@ -4,16 +4,16 @@ Component({
   },
   pageLifetimes: {
     show: function show() {
-      let _this = this;
+      const _this = this;
       wx.getStorage({
         key: 'check-list',
         success: function success(res) {
           try {
             let list = JSON.parse(res.data);
-            list = list.reduce(function (acc, item) {
+            list = list.reduce((acc, item) => {
               if (item.info !== '') {
                 acc.push({
-                  info: item.info = item.info.replace(/#iswebview#/g, ''),
+                  info: (item.info = item.info.replace(/#iswebview#/g, '')),
                   date: item.date
                 });
               }

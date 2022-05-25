@@ -1,4 +1,6 @@
-const { miniProgram: { envVersion } } = wx.getAccountInfoSync();
+const {
+  miniProgram: { envVersion }
+} = wx.getAccountInfoSync();
 
 export const AUTH_TOKEN_KEY = `${envVersion}_auth_token`;
 

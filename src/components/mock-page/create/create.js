@@ -2,12 +2,17 @@ function _readOnlyError(name) {
   throw new Error('"' + name + '" is read-only');
 }
 
-let parseTime = function parseTime(time) {
-  let format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '{y}-{m}-{d} 星期{a} {h}:{i}:{s}';
-  if (Object.prototype.toString.call(time).replace(/(^\[object )|(\]$)/g, '').toLowerCase() !== 'date') {
-    time = new Date(+time);
+const parseTime = function parseTime(time) {
+  const format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '{y}-{m}-{d} 星期{a} {h}:{i}:{s}';
+  if (
+    Object.prototype.toString
+      .call(time)
+      .replace(/(^\[object )|(\]$)/g, '')
+      .toLowerCase() !== 'date'
+  ) {
+    time = new Date(Number(time));
   }
-  let formatObj = {
+  const formatObj = {
     y: time.getFullYear(),
     m: time.getMonth() + 1,
     d: time.getDate(),
@@ -16,7 +21,7 @@ let parseTime = function parseTime(time) {
     s: time.getSeconds(),
     a: time.getDay()
   };
-  let timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, function (result, key) {
+  const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
     let value = formatObj[key];
     if (key === 'a') {
       return ['日', '一', '二', '三', '四', '五', '六'][value];
@@ -31,21 +36,23 @@ let parseTime = function parseTime(time) {
 
 Page({
   submit: function submit(_ref) {
-    let _this = this;
-    let topic = _ref.detail.value.topic;
-    if (!topic) return wx.showToast({
-      title: '请输入主题',
-      icon: 'none'
-    });
-    if (topic.length > 32) return wx.showToast({
-      title: '不得超出32位字符',
-      icon: 'none'
-    });
+    const _this = this;
+    const topic = _ref.detail.value.topic;
+    if (!topic)
+      return wx.showToast({
+        title: '请输入主题',
+        icon: 'none'
+      });
+    if (topic.length > 32)
+      return wx.showToast({
+        title: '不得超出32位字符',
+        icon: 'none'
+      });
 
     if (this.busy) return;
     this.busy = true;
 
-    let info = topic;
+    const info = topic;
     wx.getStorage({
       key: 'check-list',
       success: function success(res) {
@@ -63,10 +70,12 @@ Page({
       fail: function fail() {
         wx.setStorage({
           key: 'check-list',
-          data: JSON.stringify([{
-            info: info,
-            date: parseTime(new Date(), '{y}/{m}/{d}-{h}:{i}:{s}')
-          }])
+          data: JSON.stringify([
+            {
+              info: info,
+              date: parseTime(new Date(), '{y}/{m}/{d}-{h}:{i}:{s}')
+            }
+          ])
         });
       },
       complete: function complete() {

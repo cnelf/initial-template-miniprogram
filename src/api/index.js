@@ -9,10 +9,10 @@ const reqPath = {
 };
 
 // 基本信息授权
-export const fetchAuthToken = params => fly.get(reqPath.common.authToken, params);
+export const fetchAuthToken = (params) => fly.get(reqPath.common.authToken, params);
 
 // 授权手机号
-export const fetchAuthTel = params => fly.get(reqPath.common.authTel, params);
+export const fetchAuthTel = (params) => fly.get(reqPath.common.authTel, params);
 
 // 用户投诉
-export const fetchActComplainInfo = params => fly.post(reqPath.common.complainInfo, params);
+export const fetchActComplainInfo = (params) => fly.post(reqPath.common.complainInfo, params);

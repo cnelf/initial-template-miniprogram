@@ -71,7 +71,10 @@ export default class Poster {
     this.ctx.save();
     this.clipRound(config);
     if (mode === 'aspectFill') {
-      let clipLeft, clipTop, clipWidth, clipHeight;
+      let clipLeft;
+      let clipTop;
+      let clipWidth;
+      let clipHeight;
       clipHeight = img.width * (height / width);
       if (clipHeight > img.height) {
         clipHeight = img.height;
@@ -105,8 +108,8 @@ export default class Poster {
     if (config.text instanceof Array) {
       const textArr = config.text;
       delete config.text;
-      textArr.map(textObj => {
-        const newConfig = Object.assign({}, config, textObj);
+      textArr.forEach((textObj) => {
+        const newConfig = { ...config, ...textObj };
         const { left, textWidth, margin = 0 } = this.handleDrawText(newConfig);
         config.left = config.textAlign === 'right' ? left - textWidth - margin : left + textWidth + margin;
       });
@@ -116,12 +119,11 @@ export default class Poster {
   }
 
   handleDrawText(config) {
-    let {
+    const {
       text,
       fontSize = 20,
       fontWeight,
       textDecoration,
-      lineHeight,
       maxRow = 10,
       maxWidth = 375,
       paddingTop = 0,
@@ -135,12 +137,16 @@ export default class Poster {
       textAlign,
       baseline = 'top'
     } = config;
+    let { lineHeight } = config;
     lineHeight = lineHeight || fontSize * 1.5;
     this.ctx.save();
     this.ctx.textAlign = textAlign;
     this.ctx.fillStyle = color;
     this.ctx.textBaseline = 'middle';
-    this.ctx.font = fontWeight === 'bold' ? `bold ${fontSize}px/${lineHeight}px sans-serif` : `${fontSize}px/${lineHeight}px sans-serif`;
+    this.ctx.font =
+      fontWeight === 'bold'
+        ? `bold ${fontSize}px/${lineHeight}px sans-serif`
+        : `${fontSize}px/${lineHeight}px sans-serif`;
 
     const textArr = [];
     for (let i = 0; i < text.length; i++) {
@@ -159,7 +165,7 @@ export default class Poster {
 
     let textWidth = 0;
     textArr.forEach((item, index) => {
-      const x = textAlign === 'right' ? (left - margin) : (left + margin);
+      const x = textAlign === 'right' ? left - margin : left + margin;
       let y = top + index * lineHeight;
       if (baseline === 'top') {
         y = top + index * lineHeight + lineHeight / 2;
@@ -200,15 +206,7 @@ export default class Poster {
 
   // 绘制边框
   drawBorder(config) {
-    const {
-      width,
-      top,
-      left,
-      height,
-      borderRadius,
-      borderColor,
-      borderWidth = 1,
-    } = config;
+    const { width, top, left, height, borderRadius, borderColor, borderWidth = 1 } = config;
     this.ctx.strokeStyle = borderColor;
     this.ctx.lineWidth = borderWidth;
     if (borderRadius) {
@@ -225,7 +223,7 @@ export default class Poster {
     const { left, top, width, height, borderRadius } = config;
     const br = borderRadius / 2;
     this.ctx.beginPath();
-    this.ctx.moveTo(left + br, top);    // 移动到左上角的点
+    this.ctx.moveTo(left + br, top); // 移动到左上角的点
     this.ctx.lineTo(left + width - br, top);
     this.ctx.arc(left + width - br, top + br, br, 2 * Math.PI * (3 / 4), 2 * Math.PI * (4 / 4));
     this.ctx.lineTo(left + width, top + height - br);
@@ -237,7 +235,16 @@ export default class Poster {
   }
 
   drawCircle(config) {
-    const { top, left, r, sAngle = 0, eAngle = 2 * Math.PI, counterclockwise = false, color = '#ffffff', alpha = 1 } = config;
+    const {
+      top,
+      left,
+      r,
+      sAngle = 0,
+      eAngle = 2 * Math.PI,
+      counterclockwise = false,
+      color = '#ffffff',
+      alpha = 1
+    } = config;
     this.ctx.save();
     this.fillStyle = color;
     this.globalAlpha = alpha;
@@ -248,10 +255,20 @@ export default class Poster {
 
   // 绘制圆角
   clipRound(config) {
-    const { top, left, width, height, borderRadius, borderTopLeftRadius, borderTopRightRadius, borderBottomRightRadius, borderBottomLeftRadius } = config;
+    const {
+      top,
+      left,
+      width,
+      height,
+      borderRadius,
+      borderTopLeftRadius,
+      borderTopRightRadius,
+      borderBottomRightRadius,
+      borderBottomLeftRadius
+    } = config;
     const getArcRadius = (radius) => {
       const minSize = Math.min(width, height);
-      return (radius > minSize / 2) ? minSize / 2 : radius;
+      return radius > minSize / 2 ? minSize / 2 : radius;
     };
     if (borderTopLeftRadius) {
       const r = getArcRadius(borderTopLeftRadius);

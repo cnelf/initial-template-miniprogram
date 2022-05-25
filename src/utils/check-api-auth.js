@@ -7,7 +7,7 @@ const SCOPE_MAP = {
   invoice: '发票',
   werun: '微信运动步数',
   record: '录音功能',
-  writePhotosAlbum: '相册功能',
+  writePhotosAlbum: '相册功能'
 };
 
 const SCOPES = {
@@ -21,7 +21,7 @@ const SCOPES = {
   getWeRunData: 'werun',
   startRecord: 'record',
   saveVideoToPhotosAlbum: 'writePhotosAlbum',
-  saveImageToPhotosAlbum: 'writePhotosAlbum',
+  saveImageToPhotosAlbum: 'writePhotosAlbum'
 };
 
 /**
@@ -41,14 +41,17 @@ export async function checkApiAuth(scope, options = {}, isAuto = true) {
     if (!authSetting[`scope.${fullScope}`]) {
       await wx.authorize({ scope: `scope.${fullScope}` });
     }
-    const res = isAuto ? (await wx[scope](options)) : true;
+    const res = isAuto ? await wx[scope](options) : true;
     return res;
   } catch (e) {
     if (e.errMsg.indexOf('authorize:fail') !== -1) {
       if (isFirst) {
         return false;
       }
-      const { confirm } = await wx.showModal({ content: `授权失败，请在设置中打开“${SCOPE_MAP[fullScope]}”开关后继续操作`, confirmText: '去设置' });
+      const { confirm } = await wx.showModal({
+        content: `授权失败，请在设置中打开“${SCOPE_MAP[fullScope]}”开关后继续操作`,
+        confirmText: '去设置'
+      });
       if (confirm) {
         const { authSetting } = await wx.openSetting();
         if (authSetting[`scope.${fullScope}`]) {

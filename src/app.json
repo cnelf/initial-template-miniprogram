@@ -1,22 +1,16 @@
 {
-  "pages":[
-    "pages/index/index"
-  ],
+  "pages": ["pages/index/index"],
   "subpackages": [
     {
       "root": "pagesExtra/complaints",
-      "pages": [
-        "index/index",
-        "form/form",
-        "success/success"
-      ]
+      "pages": ["index/index", "form/form", "success/success"]
     }
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"
 }

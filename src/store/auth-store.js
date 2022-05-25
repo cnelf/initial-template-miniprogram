@@ -4,7 +4,7 @@ import { autoLoading } from '@utils/index';
 import Fly from '@lib/flyio';
 import env from '@api/env';
 
-const fly = new Fly;
+const fly = new Fly();
 
 fly.config.baseURL = env.baseURL;
 fly.config.timeout = 30000;
@@ -28,9 +28,16 @@ class AuthStore {
     const app = getApp();
     const { actId } = app.store.getState();
     const { code } = await wx.login();
-    const { data } = await fly.get('/applet/oauth/getAuthToken', { authCode: code, adminUid: env.adminUid, activityId: actId, platformType: 0 });
+    const { data } = await fly.get('/applet/oauth/getAuthToken', {
+      authCode: code,
+      adminUid: env.adminUid,
+      activityId: actId,
+      platformType: 0
+    });
     if (data.code === 200) {
-      const { data: { authToken } } = data;
+      const {
+        data: { authToken }
+      } = data;
       this.authToken = authToken;
     }
   }
@@ -52,36 +59,42 @@ class AuthStore {
     const { actId } = app.store.getState();
     // login方法不能使用await，否则调不起授权
     let code = '';
-    wx.login().then(res => {
+    wx.login().then((res) => {
       code = res.code;
     });
     const { encryptedData, iv } = await wx.getUserProfile({ lang: 'zh_CN', desc: '用于展示用户头像和昵称' });
     if (encryptedData && iv) {
-      await autoLoading(fetchAuthToken({
-        adminUid: env.adminUid,
-        activityId: actId,
-        platformType: 0,
-        authCode: code,
-        encryptInfo: encryptedData,
-        iv
-      }));
+      await autoLoading(
+        fetchAuthToken({
+          adminUid: env.adminUid,
+          activityId: actId,
+          platformType: 0,
+          authCode: code,
+          encryptInfo: encryptedData,
+          iv
+        })
+      );
     }
   }
 
   // 授权用户手机号
   async authTel({ code, encryptedData, iv }) {
-    wx.checkSession().then(async () => {
-      if (encryptedData && iv) {
-        await autoLoading(fetchAuthTel({
-          authCode: code,
-          encryptInfo: encryptedData,
-          iv
-        }));
-      }
-    }).catch(() => {
-      // 在外部重新调用wx.login
-      throw new Error('登录已失效，请重新点击授权');
-    });
+    wx.checkSession()
+      .then(async () => {
+        if (encryptedData && iv) {
+          await autoLoading(
+            fetchAuthTel({
+              authCode: code,
+              encryptInfo: encryptedData,
+              iv
+            })
+          );
+        }
+      })
+      .catch(() => {
+        // 在外部重新调用wx.login
+        throw new Error('登录已失效，请重新点击授权');
+      });
   }
 }
 
