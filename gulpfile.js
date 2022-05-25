@@ -1,19 +1,19 @@
 const gulp = require('gulp');
 const path = require('path');
 const del = require('del');
-const changed = require('gulp-changed');
+const jsonfile = require('jsonfile');
+const gulpChanged = require('gulp-changed');
 const gulpTs = require('gulp-typescript');
 const gulpIf = require('gulp-if');
-const sourcemaps = require('gulp-sourcemaps');
+const gulpSourcemaps = require('gulp-sourcemaps');
 const gulpLess = require('gulp-less');
 const gulpSass = require('gulp-sass');
 gulpSass.compiler = require('node-sass');
-const rename = require('gulp-rename');
+const gulpRename = require('gulp-rename');
 const gulpTinyPng = require('gulp-tinypng-nokey');
-const cache = require('gulp-cache');
-const mpNpm = require('gulp-mp-npm');
-const jsonfile = require('jsonfile');
-const alias = require('gulp-wechat-weapp-src-alisa');
+const gulpCache = require('gulp-cache');
+const gulpMpNpm = require('gulp-mp-npm');
+const gulpAlias = require('gulp-wechat-weapp-src-alisa');
 
 const resolve = (...args) => path.resolve(__dirname, ...args);
 
@@ -80,7 +80,7 @@ const clear = () => del(dist);
 /** `gulp clearCache`
  * 清理缓存
  * */
-const clearCache = () => cache.clearAll();
+const clearCache = () => gulpCache.clearAll();
 
 /** `gulp copy`
  * 清理
@@ -88,8 +88,8 @@ const clearCache = () => cache.clearAll();
 const copy = () =>
   gulp
     .src(globs.copy, { ...srcOptions, since: since(copy) })
-    .pipe(changed(dist)) // 过滤掉未改变的文件
-    .pipe(alias(aliasConfig))
+    .pipe(gulpChanged(dist)) // 过滤掉未改变的文件
+    .pipe(gulpAlias(aliasConfig))
     .pipe(gulp.dest(dist));
 
 /** `gulp ts`
@@ -99,11 +99,11 @@ const tsProject = gulpTs.createProject(resolve('tsconfig.json'));
 const ts = () =>
   gulp
     .src(globs.ts, srcOptions)
-    .pipe(gulpIf(sourcemap.ts, sourcemaps.init()))
+    .pipe(gulpIf(sourcemap.ts, gulpSourcemaps.init()))
     .pipe(tsProject()) // 编译ts
-    .pipe(alias(aliasConfig))
-    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
-    .pipe(gulpIf(sourcemap.ts, sourcemaps.write('.')))
+    .pipe(gulpAlias(aliasConfig))
+    .pipe(gulpMpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulpIf(sourcemap.ts, gulpSourcemaps.write('.')))
     .pipe(gulp.dest(dist));
 
 /** `gulp js`
@@ -112,8 +112,8 @@ const ts = () =>
 const js = () =>
   gulp
     .src(globs.js, { ...srcOptions, since: since(js) })
-    .pipe(alias(aliasConfig))
-    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulpAlias(aliasConfig))
+    .pipe(gulpMpNpm(mpNpmOptions)) // 分析依赖
     .pipe(gulp.dest(dist));
 
 /** `gulp json`
@@ -122,7 +122,7 @@ const js = () =>
 const json = () =>
   gulp
     .src(globs.json, { ...srcOptions, since: since(json) })
-    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulpMpNpm(mpNpmOptions)) // 分析依赖
     .pipe(gulp.dest(dist));
 
 /** `gulp less`
@@ -131,12 +131,12 @@ const json = () =>
 const less = () =>
   gulp
     .src(globs.less, { ...srcOptions, since: since(less) })
-    .pipe(gulpIf(sourcemap.less, sourcemaps.init()))
+    .pipe(gulpIf(sourcemap.less, gulpSourcemaps.init()))
     .pipe(gulpLess()) // 编译less
-    .pipe(rename({ extname: '.wxss' }))
-    .pipe(alias(aliasConfig))
-    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
-    .pipe(gulpIf(sourcemap.less, sourcemaps.write('.')))
+    .pipe(gulpRename({ extname: '.wxss' }))
+    .pipe(gulpAlias(aliasConfig))
+    .pipe(gulpMpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulpIf(sourcemap.less, gulpSourcemaps.write('.')))
     .pipe(gulp.dest(dist));
 
 /** `gulp sass`
@@ -145,12 +145,12 @@ const less = () =>
 const sass = () =>
   gulp
     .src(globs.sass, { ...srcOptions, since: since(sass) })
-    .pipe(gulpIf(sourcemap.sass, sourcemaps.init()))
+    .pipe(gulpIf(sourcemap.sass, gulpSourcemaps.init()))
     .pipe(gulpSass()) // 编译sass
-    .pipe(rename({ extname: '.wxss' }))
-    .pipe(alias(aliasConfig))
-    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
-    .pipe(gulpIf(sourcemap.sass, sourcemaps.write('.')))
+    .pipe(gulpRename({ extname: '.wxss' }))
+    .pipe(gulpAlias(aliasConfig))
+    .pipe(gulpMpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulpIf(sourcemap.sass, gulpSourcemaps.write('.')))
     .pipe(gulp.dest(dist));
 
 /** `gulp wxss`
@@ -159,8 +159,8 @@ const sass = () =>
 const wxss = () =>
   gulp
     .src(globs.wxss, { ...srcOptions, since: since(wxss) })
-    .pipe(alias(aliasConfig))
-    .pipe(mpNpm(mpNpmOptions)) // 分析依赖
+    .pipe(gulpAlias(aliasConfig))
+    .pipe(gulpMpNpm(mpNpmOptions)) // 分析依赖
     .pipe(gulp.dest(dist));
 
 /** `gulp image`
@@ -169,7 +169,7 @@ const wxss = () =>
 const image = () =>
   gulp
     .src(globs.image, { ...srcOptions, since: since(image) })
-    .pipe(cache(gulpTinyPng()))
+    .pipe(gulpCache(gulpTinyPng()))
     .pipe(gulp.dest(dist));
 
 // 不清理 dist 的构建
