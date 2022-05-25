@@ -1,18 +1,18 @@
 .container {
   .label {
-    padding: 28rpx 30rpx 12rpx;
-    font-size: 28rpx;
+    padding: 14px 15px 6px;
+    font-size: 14px;
     color: #999;
   }
 
   .complaint-list {
-    padding: 0 30rpx;
+    padding: 0 15px;
     background: #fff;
 
     .complaint-item {
-      border-bottom: 1rpx solid #e6e6e6;
-      padding: 28rpx 0;
-      font-size: 32rpx;
+      border-bottom: 1px solid #e6e6e6;
+      padding: 14px 0;
+      font-size: 16px;
       color: #333;
 
       &:last-of-type {

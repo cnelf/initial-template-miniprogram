@@ -4,7 +4,7 @@
     <input name="topic" type="text"/>
     <button form-type="submit">提交</button>
   </form>
-  <view class="tips" style="margin-top: 30rpx;">1. 输入签到内容</view>
+  <view class="tips" style="margin-top: 15px;">1. 输入签到内容</view>
   <view class="tips">2. 记录签到信息</view>
   <view class="tips">3. 签到成功</view>
 </view>

@@ -1,24 +1,24 @@
 .record-wrap {
   position: relative;
   width: 100vw;
-  height: 1600rpx;
+  height: 800px;
   background-image: url('https://huaer-internal-resource.weijuju.com/huaer-zh-community/applet/images/person-bg.png');
   background-repeat: no-repeat;
   background-size: cover;
 
   .bg-img {
     position: absolute;
-    top: 0rpx;
-    left: 0rpx;
+    top: 0;
+    left: 0;
     width: 100vw;
-    height: 1600rpx;
+    height: 800px;
   }
 
   .sign-num {
     position: absolute;
-    top: 387rpx;
-    left: 109rpx;
-    width: 100rpx;
+    top: 193.5px;
+    left: 54.5px;
+    width: 50px;
     font-weight: bold;
     text-align: center;
     color: #fff;
@@ -26,9 +26,9 @@
 
   .complain {
     position: absolute;
-    top: 387rpx;
-    right: 90rpx;
-    width: 100rpx;
+    top: 193.5px;
+    right: 45px;
+    width: 50px;
     font-weight: bold;
     text-align: center;
     color: #fff;
@@ -36,44 +36,44 @@
 
   .my-complain {
     position: absolute;
-    top: 630rpx;
-    left: 54rpx;
-    width: 179rpx;
-    height: 200rpx;
+    top: 315px;
+    left: 27px;
+    width: 89.5px;
+    height: 100px;
   }
 
   .my-sign {
     position: absolute;
-    top: 630rpx;
-    left: 290rpx;
-    width: 179rpx;
-    height: 200rpx;
+    top: 315px;
+    left: 145px;
+    width: 89.5px;
+    height: 100px;
   }
 
   .more {
     position: absolute;
-    top: 630rpx;
-    left: 523rpx;
-    width: 179rpx;
-    height: 200rpx;
+    top: 315px;
+    left: 261.5px;
+    width: 89.5px;
+    height: 100px;
   }
 
   .sign-recode {
     position: absolute;
-    top: 883rpx;
-    left: 0rpx;
+    top: 441.5px;
+    left: 0;
     overflow-x: hidden;
     overflow-y: scroll;
     width: 100vw;
-    height: 623rpx;
+    height: 311.5px;
 
     .item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1rpx solid #999;
-      padding: 0 40rpx;
-      height: 100rpx;
+      border-bottom: 1px solid #999;
+      padding: 0 20px;
+      height: 50px;
     }
   }
 }

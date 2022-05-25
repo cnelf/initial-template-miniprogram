@@ -22,7 +22,7 @@
     wx:for="{{ filletNodes }}"
     wx:key="index"
     class="el-skeleton el-skeleton-fillet {{ animation ? 'skeleton-fade' : '' }}"
-    style="top: {{ item.top - top }}px; left: {{ item.left - left }}px; width: {{ item.width }}px; height: {{ item.height }}px; background-color: {{ elColor }}; border-radius: {{ borderRadius }}rpx;"
+    style="top: {{ item.top - top }}px; left: {{ item.left - left }}px; width: {{ item.width }}px; height: {{ item.height }}px; background-color: {{ elColor }}; border-radius: {{ borderRadius }}px;"
   >
   </view>
 </view>

@@ -10,30 +10,30 @@
 
   .back-to-top {
     position: fixed;
-    right: 30rpx;
-    bottom: 200rpx;
+    right: 15px;
+    bottom: 100px;
     z-index: 9;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1rpx solid #daddcf;
+    border: 1px solid #daddcf;
     border-radius: 50%;
-    width: 75rpx;
-    height: 75rpx;
-    font-size: 22rpx;
+    width: 37.5px;
+    height: 37.5px;
+    font-size: 11px;
     background: rgba(255, 255, 255, 0.7);
 
     .text-top {
-      margin-top: -4rpx;
+      margin-top: -2px;
     }
   }
 
   .loading-wrapper {
     display: flex;
     justify-content: center;
-    padding: 30rpx 0;
-    font-size: 28rpx;
+    padding: 15px 0;
+    font-size: 14px;
     color: #969799;
   }
 }

@@ -9,6 +9,7 @@ const gulpSourcemaps = require('gulp-sourcemaps');
 const gulpLess = require('gulp-less');
 const gulpSass = require('gulp-sass');
 gulpSass.compiler = require('node-sass');
+const px2rpx = require('gulp-px2rpx');
 const gulpRename = require('gulp-rename');
 const gulpTinyPng = require('gulp-tinypng-nokey');
 const gulpCache = require('gulp-cache');
@@ -55,6 +56,7 @@ const globs = {
   less: `${src}/**/*.less`, // 匹配 less 文件
   sass: `${src}/**/*.scss`, // 匹配 sass 文件
   wxss: `${src}/**/*.wxss`, // 匹配 wxss 文件
+  wxml: `${src}/**/*.wxml`, // 匹配 wxml 文件
   image: `${src}/**/*.{png,jpg,jpeg,gif,svg}` // 匹配 image 文件
 };
 globs.copy = [
@@ -65,6 +67,7 @@ globs.copy = [
   `!${globs.less}`,
   `!${globs.sass}`,
   `!${globs.wxss}`,
+  `!${globs.wxml}`,
   `!${globs.image}`
 ]; // 匹配需要拷贝的文件
 
@@ -133,6 +136,12 @@ const less = () =>
     .src(globs.less, { ...srcOptions, since: since(less) })
     .pipe(gulpIf(sourcemap.less, gulpSourcemaps.init()))
     .pipe(gulpLess()) // 编译less
+    .pipe(
+      px2rpx({
+        screenWidth: 375,
+        wxappScreenWidth: 750
+      })
+    )
     .pipe(gulpRename({ extname: '.wxss' }))
     .pipe(gulpAlias(aliasConfig))
     .pipe(gulpMpNpm(mpNpmOptions)) // 分析依赖
@@ -147,6 +156,12 @@ const sass = () =>
     .src(globs.sass, { ...srcOptions, since: since(sass) })
     .pipe(gulpIf(sourcemap.sass, gulpSourcemaps.init()))
     .pipe(gulpSass()) // 编译sass
+    .pipe(
+      px2rpx({
+        screenWidth: 375,
+        wxappScreenWidth: 750
+      })
+    )
     .pipe(gulpRename({ extname: '.wxss' }))
     .pipe(gulpAlias(aliasConfig))
     .pipe(gulpMpNpm(mpNpmOptions)) // 分析依赖
@@ -163,6 +178,21 @@ const wxss = () =>
     .pipe(gulpMpNpm(mpNpmOptions)) // 分析依赖
     .pipe(gulp.dest(dist));
 
+/** `gulp wxml`
+ * 解析wxml
+ * */
+const wxml = () =>
+  gulp
+    .src(globs.wxml, { ...srcOptions, since: since(wxml) })
+    .pipe(
+      px2rpx({
+        screenWidth: 375,
+        wxappScreenWidth: 750
+      })
+    )
+    .pipe(gulpAlias(aliasConfig))
+    .pipe(gulp.dest(dist));
+
 /** `gulp image`
  * 压缩图片
  * */
@@ -173,7 +203,7 @@ const image = () =>
     .pipe(gulp.dest(dist));
 
 // 不清理 dist 的构建
-const _build = gulp.parallel(copy, ts, js, json, less, sass, wxss, image);
+const _build = gulp.parallel(copy, ts, js, json, less, sass, wxss, wxml, image);
 
 // 将 miniprogramRoot 配置修改为 dist 路径
 const config = async () => {
@@ -210,6 +240,7 @@ const watch = () => {
   gulp.watch(globs.less, watchOptions, less);
   gulp.watch(globs.sass, watchOptions, sass);
   gulp.watch(globs.wxss, watchOptions, wxss);
+  gulp.watch(globs.wxml, watchOptions, wxml);
   gulp.watch(globs.image, watchOptions, image);
 };
 

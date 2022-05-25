@@ -1,7 +1,7 @@
 <view class="component-pagination">
   <scroll-view
     class="scroll-view"
-    style="padding-bottom: {{ openSafeBottom? safeBottom : 0 }}rpx"
+    style="padding-bottom: {{ openSafeBottom ? safeBottom : 0 }}px"
     scroll-y="{{ true }}"
     scroll-top="{{ scrollTop }}"
     scroll-with-animation="{{ true }}"

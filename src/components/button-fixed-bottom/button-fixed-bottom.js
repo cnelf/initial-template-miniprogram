@@ -31,7 +31,7 @@ Component({
     height: 0,
     contentHeight: uiStore.systemInfo.windowHeight,
     showButton: true,
-    iphoneXPadding: uiStore.isIphoneX ? 32 : 0 // rpx
+    iphoneXPadding: uiStore.isIphoneX ? 32 : 0
   },
 
   systemInfo: null,

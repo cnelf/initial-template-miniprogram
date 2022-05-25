@@ -8,6 +8,6 @@ function transformCent(cent = 0) {
 }
 
 module.exports = {
-  toFixed,
-  transformCent
+  toFixed: toFixed,
+  transformCent: transformCent
 };

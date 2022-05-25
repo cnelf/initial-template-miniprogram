@@ -1,18 +1,18 @@
 .create-wrap {
-  padding: 20rpx 20rpx;
+  padding: 1px;
 
   input {
-    margin: 10rpx;
-    border: 1rpx solid #666;
-    border-radius: 10rpx;
-    padding: 12rpx 5rpx;
+    margin: 5px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    padding: 6px 2.5px;
   }
 
   button {
-    margin-top: 20rpx;
-    border: #60ccfe 1rpx solid;
-    border-radius: 10rpx;
-    padding: 20rpx 0;
+    margin-top: 10px;
+    border: #60ccfe 1px solid;
+    border-radius: 5px;
+    padding: 10px 0;
     width: 100%;
     color: #fff;
     background-color: #60ccfe;
@@ -20,15 +20,15 @@
 
   .image {
     display: block;
-    margin: 30rpx auto 0;
-    border: 1rpx solid #333;
-    border-radius: 10rpx;
+    margin: 15px auto 0;
+    border: 1px solid #333;
+    border-radius: 5px;
     width: 85vw;
     height: 85vw;
   }
 
   .tips {
-    margin-top: 5rpx;
+    margin-top: 2.5px;
     text-align: center;
   }
 }

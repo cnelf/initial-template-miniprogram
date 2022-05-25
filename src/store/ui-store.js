@@ -34,7 +34,7 @@ class UiStore {
   }
 
   get safeBottom() {
-    return this.isIphoneX ? 32 : 0; // rpx
+    return this.isIphoneX ? 32 : 0;
   }
 
   get isIOS() {
