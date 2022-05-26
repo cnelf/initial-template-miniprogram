@@ -13,6 +13,28 @@
     "lint:style": "stylelint \"**/*.{css,less,scss,postcss}\" --no-fix --max-warnings 0",
     "lint:style:fix": "stylelint \"**/*.{css,less,scss,postcss}\" --fix"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.md": [
+      "npm run prettier",
+      "npm run lint",
+      "git add ."
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "npm run prettier",
+      "npm run lint",
+      "git add ."
+    ],
+    "*.{css,scss,less}": [
+      "npm run prettier",
+      "npm run lint:style",
+      "git add ."
+    ]
+  },
   "dependencies": {
     "@vant/weapp": "^1.10.3",
     "async-validator": "^3.5.2",
@@ -40,8 +62,10 @@
     "gulp-tinypng-nokey": "^1.1.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "gulp-wechat-weapp-src-alisa": "^1.0.4",
+    "husky": "^4.3.8",
     "inquirer": "^8.1.0",
     "jsonfile": "^6.1.0",
+    "lint-staged": "^12.4.2",
     "miniprogram-ci": "^1.2.3",
     "node-sass": "^4.13.0",
     "prettier": "^2.6.2",
