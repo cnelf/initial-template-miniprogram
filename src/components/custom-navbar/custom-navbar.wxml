@@ -1,0 +1,21 @@
+<block wx:if="{{ showStatusBar }}">
+  <view style="height: {{ statusBarHeight }}PX; background: {{ statusBarBackground }};" class="fixed"/>
+  <view style="height: {{ statusBarHeight }}PX;" />
+</block>
+
+<block wx:if="{{ showNavbar }}" >
+  <view
+    class="fixed navbar"
+    style="top: {{ statusBarHeight }}PX; padding-right: {{ menuButtonInfo.width + menuButtonInfo.rightGap }}PX; padding-left: {{ !isTabPage && 36 }}PX; height: {{ menuButtonInfo.totalHeight }}PX; background: {{ navbarBackground }};"
+    catchtouchmove="preventTouchmove"
+  >
+    <slot />
+    <block wx:if="{{ title === '-1' }}"/>
+    <view wx:elif="{{ title }}" class="title">{{ title }}</view>
+  </view>
+  <view style="height: {{ menuButtonInfo.totalHeight }}PX; top: {{ statusBarHeight }}PX;" />
+</block>
+
+<view wx:if="{{ !isTabPage }}" class="icons" style="top: {{ statusBarHeight + menuButtonInfo.gap  }}PX; height: {{ menuButtonInfo.height }}PX; width: 36PX;">
+  <image mode="widthFix" src="/images/components/icon-arrow-left.png" bindtap="goBack" style="width: 20PX; height: 20PX;"/>
+</view>

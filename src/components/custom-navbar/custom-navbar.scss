@@ -1,0 +1,32 @@
+@import '../../styles/mixin.scss';
+
+.fixed {
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  @include text-overflow(1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  transform: translate(-50%, -50%);
+}
+
+.icons {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

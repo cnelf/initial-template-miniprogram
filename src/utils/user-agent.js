@@ -1,10 +1,10 @@
 class UserAgent {
   constructor() {
-    this.getSystemInfo();
-    this.getMenuButtonRectInfo();
+    this.setSystemInfo();
+    this.setMenuButtonInfo();
   }
 
-  getSystemInfo() {
+  setSystemInfo() {
     try {
       this.systemInfo = wx.getSystemInfoSync();
     } catch {
@@ -14,8 +14,33 @@ class UserAgent {
     }
   }
 
-  getMenuButtonRectInfo() {
-    this.menuButtonRectInfo = wx.getMenuButtonBoundingClientRect();
+  setMenuButtonInfo() {
+    this._menuButtonInfo = wx.getMenuButtonBoundingClientRect();
+  }
+
+  getGap() {
+    // 获取胶囊顶部到状态栏的间隙
+    const { top } = this._menuButtonInfo;
+    if (top) {
+      const { statusBarHeight } = this.systemInfo;
+      return top - statusBarHeight;
+    } else {
+      return this.isIOS ? 4 : 8;
+    }
+  }
+
+  get menuButtonInfo() {
+    const gap = this.getGap();
+    const { height = 32, right } = this._menuButtonInfo;
+    const totalHeight = gap * 2 + height; // 导航条的高度(不包括状态栏高度)
+    const rightGap = right ? this.systemInfo.screenWidth - right : 7;
+
+    return {
+      ...this._menuButtonInfo,
+      gap,
+      totalHeight,
+      rightGap
+    };
   }
 
   /**
