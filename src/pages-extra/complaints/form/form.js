@@ -48,7 +48,7 @@ Page({
       throw new Error('校验失败');
     });
     await autoLoading(fetchActComplainInfo({ ...this.data.form }));
-    wx.$router.redirectTo({ url: '/pagesExtra/complaints/success/success' });
+    wx.$router.redirectTo({ url: '/pages-extra/complaints/success/success' });
   },
 
   clearErrorMessage() {

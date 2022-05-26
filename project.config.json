@@ -81,19 +81,19 @@
         },
         {
           "name": "投诉-主页",
-          "pathName": "pagesExtra/complaints/index/index",
+          "pathName": "pages-extra/complaints/index/index",
           "query": "",
           "scene": ""
         },
         {
           "name": "投诉-表单",
-          "pathName": "pagesExtra/complaints/form/form",
+          "pathName": "pages-extra/complaints/form/form",
           "query": "",
           "scene": ""
         },
         {
           "name": "投诉-成功",
-          "pathName": "pagesExtra/complaints/success/success",
+          "pathName": "pages-extra/complaints/success/success",
           "query": "",
           "scene": ""
         }

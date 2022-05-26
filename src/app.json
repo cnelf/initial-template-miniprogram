@@ -2,7 +2,7 @@
   "pages": ["pages/index/index"],
   "subpackages": [
     {
-      "root": "pagesExtra/complaints",
+      "root": "pages-extra/complaints",
       "pages": ["index/index", "form/form", "success/success"]
     }
   ],
