@@ -1,21 +1,21 @@
 <block wx:if="{{ showStatusBar }}">
-  <view style="height: {{ statusBarHeight }}PX; background: {{ statusBarBackground }};" class="fixed"/>
-  <view style="height: {{ statusBarHeight }}PX;" />
+  <view style="height: {{ statusBarHeight }}px; background: {{ statusBarBackground }};" class="fixed"/>
+  <view style="height: {{ statusBarHeight }}px;" />
 </block>
 
 <block wx:if="{{ showNavbar }}" >
   <view
     class="fixed navbar"
-    style="top: {{ statusBarHeight }}PX; padding-right: {{ menuButtonInfo.width + menuButtonInfo.rightGap }}PX; padding-left: {{ !isTabPage && 36 }}PX; height: {{ menuButtonInfo.totalHeight }}PX; background: {{ navbarBackground }};"
+    style="top: {{ statusBarHeight }}px; padding-right: {{ menuButtonInfo.width + menuButtonInfo.rightGap }}px; padding-left: {{ !isTabPage && 36 }}px; height: {{ menuButtonInfo.totalHeight }}px; background: {{ navbarBackground }};"
     catchtouchmove="preventTouchmove"
   >
     <slot />
     <block wx:if="{{ title === '-1' }}"/>
     <view wx:elif="{{ title }}" class="title">{{ title }}</view>
   </view>
-  <view style="height: {{ menuButtonInfo.totalHeight }}PX; top: {{ statusBarHeight }}PX;" />
+  <view style="height: {{ menuButtonInfo.totalHeight }}px; top: {{ statusBarHeight }}px;" />
 </block>
 
-<view wx:if="{{ !isTabPage }}" class="icons" style="top: {{ statusBarHeight + menuButtonInfo.gap  }}PX; height: {{ menuButtonInfo.height }}PX; width: 36PX;">
-  <image mode="widthFix" src="/images/components/icon-arrow-left.png" bindtap="goBack" style="width: 20PX; height: 20PX;"/>
+<view wx:if="{{ !isTabPage }}" class="icons" style="top: {{ statusBarHeight + menuButtonInfo.gap  }}px; height: {{ menuButtonInfo.height }}px; width: 36px;">
+  <image mode="widthFix" src="/images/components/icon-arrow-left.png" bindtap="goBack" style="width: 20px; height: 20px;"/>
 </view>

@@ -11,7 +11,6 @@ const gulpSass = require('gulp-sass');
 gulpSass.compiler = require('node-sass');
 const px2rpx = require('gulp-px2rpx');
 const gulpRename = require('gulp-rename');
-const gulpTinyPng = require('gulp-tinypng-nokey');
 const gulpCache = require('gulp-cache');
 const gulpMpNpm = require('gulp-mp-npm');
 const gulpAlias = require('gulp-wechat-weapp-src-alisa');
@@ -183,13 +182,9 @@ const wxml = () =>
     .pipe(gulp.dest(dist));
 
 /** `gulp image`
- * 压缩图片
+ * 处理图片
  * */
-const image = () =>
-  gulp
-    .src(globs.image, { ...srcOptions, since: since(image) })
-    .pipe(gulpCache(gulpTinyPng()))
-    .pipe(gulp.dest(dist));
+const image = () => gulp.src(globs.image, { ...srcOptions, since: since(image) }).pipe(gulp.dest(dist));
 
 // 不清理 dist 的构建
 const _build = gulp.parallel(copy, ts, js, json, less, sass, wxss, wxml, image);

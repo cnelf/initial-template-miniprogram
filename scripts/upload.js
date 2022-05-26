@@ -25,7 +25,7 @@ async function upload() {
   const { version, desc } = await inquirer.prompt(questions);
   spinner.start();
   const project = new ci.Project({
-    appid: 'wx67e4efa22721770a',
+    appid: '',
     type: 'miniProgram',
     projectPath: path.resolve(__dirname, '../.miniprogram'),
     privateKeyPath: path.resolve(__dirname, './upload.key'),
