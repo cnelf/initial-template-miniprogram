@@ -1,6 +1,6 @@
 {
+  "navigationBarTitleText": "投诉",
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index"
-  },
-  "navigationBarTitleText": "投诉"
+  }
 }
