@@ -6,12 +6,20 @@ page {
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC',
     'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
   font-size: 14px;
+  line-height: 1;
   color: $text-color;
   background: $bg-color;
 }
 
-view {
+view,
+swiper,
+input,
+scroll-view {
   box-sizing: border-box;
+}
+
+view {
+  background-size: 100%;
 }
 
 image {
@@ -32,6 +40,10 @@ image {
 
 .bg-warning {
   background: $warning;
+}
+
+.placeholder {
+  color: $placeholder-color;
 }
 
 .text-overflow {

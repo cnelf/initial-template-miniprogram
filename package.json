@@ -21,17 +21,16 @@
   "lint-staged": {
     "*.md": [
       "npm run prettier",
-      "npm run lint",
       "git add ."
     ],
     "*.{js,jsx,ts,tsx}": [
       "npm run prettier",
-      "npm run lint",
+      "npm run lint:fix",
       "git add ."
     ],
     "*.{css,scss,less}": [
       "npm run prettier",
-      "npm run lint:style",
+      "npm run lint:style:fix",
       "git add ."
     ]
   },

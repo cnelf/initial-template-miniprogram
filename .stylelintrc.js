@@ -17,7 +17,7 @@ module.exports = {
     'selector-type-no-unknown': [
       true,
       {
-        ignoreTypes: ['page']
+        ignoreTypes: ['page', 'swiper', 'scroll-view']
       }
     ],
     'at-rule-no-unknown': [

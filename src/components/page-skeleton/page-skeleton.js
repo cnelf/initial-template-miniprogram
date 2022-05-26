@@ -13,8 +13,8 @@ Component({
       value: false
     },
     borderRadius: {
-      type: [String, Number],
-      value: '10'
+      type: Number,
+      value: 10
     },
     loading: {
       type: Boolean,
