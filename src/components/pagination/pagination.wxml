@@ -21,7 +21,7 @@
       <view wx:else>没有更多了 ~</view>
     </view>
   </scroll-view>
-  <view wx:if="{{ scrollTopEnabled && scrollTopTriggered }}" class="back-to-top" bindtap="handleScrollTop">
+  <view wx:if="{{ scrollTopEnabled && showScrollTop }}" class="back-to-top" bindtap="handleScrollTop">
     <van-icon name="arrow-up" size="16px" />
     <view class="text-top">Top</view>
   </view>

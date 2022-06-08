@@ -1,10 +1,13 @@
 export { default as Poster } from './poster';
 export * from './user-auth';
 export * from './user-agent';
-export * from './history';
+export * from './wx-router';
 export * from './sleep';
 export * from './prompt';
 export * from './random';
 export * from './sava-file';
 export * from './current-page';
 export * from './check-api-auth';
+export * from './types';
+export * from './get-image-url';
+export * from './validate';

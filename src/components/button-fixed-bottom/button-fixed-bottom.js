@@ -1,7 +1,10 @@
 import { userAgent } from '@/utils/index';
-import _ from '@/lib/lodash';
 
 Component({
+  options: {
+    multipleSlots: true
+  },
+
   externalClasses: ['footer-class', 'content-class', 'component-class'],
 
   properties: {
@@ -23,20 +26,12 @@ Component({
     }
   },
 
-  options: {
-    multipleSlots: true
-  },
-
   data: {
     height: 0,
     contentHeight: userAgent.systemInfo.windowHeight,
     showButton: true,
     iphoneXPadding: userAgent.isIphoneX ? 32 : 0
   },
-
-  systemInfo: null,
-
-  calcTimer: 0,
 
   observers: {
     showFooter: function (newVal) {
@@ -60,7 +55,7 @@ Component({
           .in(this)
           .select('#footer')
           .boundingClientRect(async (res) => {
-            const height = _.get(res, 'height', 0);
+            const height = res?.height || 0;
             if (!this.systemInfo) {
               this.systemInfo = userAgent.systemInfo;
             }

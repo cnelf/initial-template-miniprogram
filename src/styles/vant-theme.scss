@@ -1,0 +1,15 @@
+// vant组件库样式覆盖
+page {
+  --dialog-width: 260px;
+  --dialog-border-radius: 5px;
+  --dialog-header-line-height: 1;
+  --dialog-message-padding: 16px;
+  --dialog-message-font-size: 12px;
+  --dialog-message-line-height: 16px;
+  --dialog-has-title-message-text-color: #999;
+  --dialog-has-title-message-padding-top: 16px;
+}
+
+.dialog-index--van-dialog__confirm {
+  color: #0d79f4 !important;
+}

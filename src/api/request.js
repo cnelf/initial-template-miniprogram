@@ -7,6 +7,7 @@ const fly = new Fly();
 
 fly.config.baseURL = env.baseURL;
 fly.config.timeout = 30000;
+fly.config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
 fly.interceptors.request.use((request) => {
   fly.lock();
@@ -14,8 +15,6 @@ fly.interceptors.request.use((request) => {
     .checkToken(request)
     .then(() => {
       request.headers['AuthToken'] = wx.getStorageSync(AUTH_TOKEN_KEY);
-      request.headers['Content-Type'] =
-        request.method === 'POST' ? 'application/x-www-form-urlencoded' : 'application/json';
       return request;
     })
     .finally(() => {

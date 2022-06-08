@@ -1,9 +1,9 @@
 Component({
-  externalClasses: ['body-class', 'content-class'],
-
   options: {
     multipleSlots: true
   },
+
+  externalClasses: ['body-class', 'content-class'],
 
   properties: {
     show: {

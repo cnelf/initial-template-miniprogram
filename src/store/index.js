@@ -6,7 +6,7 @@ import Store from 'wxministore';
  */
 export const store = new Store({
   state: {
-    loading: false
+    version: 0 // 小程序版本号
   },
   openPart: true,
   debug: false

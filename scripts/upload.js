@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const ora = require('ora');
-const chalk = require('chalk')
 const path = require('path');
+const chalk = require('chalk');
 const ci = require('miniprogram-ci');
 const dayjs = require('dayjs');
 
@@ -27,7 +27,7 @@ async function upload() {
   const project = new ci.Project({
     appid: '',
     type: 'miniProgram',
-    projectPath: path.resolve(__dirname, '../.miniprogram'),
+    projectPath: path.resolve(__dirname, '../dist'),
     privateKeyPath: path.resolve(__dirname, './upload.key'),
     ignores: ['node_modules/**/*']
   });
@@ -36,6 +36,7 @@ async function upload() {
       project,
       version,
       desc,
+      robot: 1,
       setting: {
         es6: true,
         es7: true,

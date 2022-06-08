@@ -7,7 +7,7 @@
   <view
     class="fixed navbar"
     style="top: {{ statusBarHeight }}px; padding-right: {{ menuButtonInfo.width + menuButtonInfo.rightGap }}px; padding-left: {{ !isTabPage && 36 }}px; height: {{ menuButtonInfo.totalHeight }}px; background: {{ navbarBackground }};"
-    catchtouchmove="preventTouchmove"
+    catchtouchmove="noop"
   >
     <slot />
     <block wx:if="{{ title === '-1' }}"/>
@@ -16,6 +16,11 @@
   <view style="height: {{ menuButtonInfo.totalHeight }}px; top: {{ statusBarHeight }}px;" />
 </block>
 
-<view wx:if="{{ !isTabPage }}" class="icons" style="top: {{ statusBarHeight + menuButtonInfo.gap  }}px; height: {{ menuButtonInfo.height }}px; width: 36px;">
-  <image mode="widthFix" src="/images/components/icon-arrow-left.png" bindtap="goBack" style="width: 20px; height: 20px;"/>
+<view
+  wx:if="{{ !isTabPage }}"
+  class="icon"
+  style="top: {{ statusBarHeight + menuButtonInfo.gap  }}px; height: {{ menuButtonInfo.height }}px; width: 36px;"
+  bindtap="goBack"
+>
+  <van-icon name="arrow-left" size="20px" />
 </view>

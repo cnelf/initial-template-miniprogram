@@ -20,10 +20,7 @@ Component({
     },
     title: {
       type: String,
-      value: '',
-      observer(newVal) {
-        if (newVal) wx.setNavigationBarTitle({ title: newVal });
-      }
+      value: ''
     }
   },
 
@@ -31,6 +28,12 @@ Component({
     menuButtonInfo: {},
     statusBarHeight: 0,
     isTabPage: true
+  },
+
+  observers: {
+    title: function (newVal) {
+      newVal && wx.setNavigationBarTitle({ title: newVal });
+    }
   },
 
   lifetimes: {
@@ -55,6 +58,7 @@ Component({
     goBack() {
       wx.$router.navigateBack();
     },
-    preventTouchmove() {}
+
+    noop() {} // 阻止滚动穿透
   }
 });

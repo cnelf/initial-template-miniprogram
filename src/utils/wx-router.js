@@ -1,6 +1,6 @@
 import qs from 'qs';
 
-class History {
+class Router {
   constructor() {
     this.tabPages = []; // tabBar页
     this.tabQueryList = {}; // tanBar页参数
@@ -14,6 +14,10 @@ class History {
   get prevPage() {
     const pages = getCurrentPages();
     return pages[pages.length - 2];
+  }
+
+  isHomePage(path) {
+    return (path || this.currentPage.route) === 'pages/index/index';
   }
 
   isTabPage(url = this.currentPage.route) {
@@ -68,4 +72,4 @@ class History {
   }
 }
 
-export const history = new History();
+export const router = new Router();

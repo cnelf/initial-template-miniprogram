@@ -1,4 +1,4 @@
-.miniprogram/*
+dist/*
 scripts/*
 node_modules/*
 src/lib/*

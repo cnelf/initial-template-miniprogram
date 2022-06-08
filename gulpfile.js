@@ -19,7 +19,7 @@ const resolve = (...args) => path.resolve(__dirname, ...args);
 
 /* config */
 const src = 'src';
-const dist = '.miniprogram';
+const dist = 'dist';
 
 const sourcemap = {
   ts: true, // 是否开启 ts sourcemap

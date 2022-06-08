@@ -1,3 +1,5 @@
+import Dialog from '../miniprogram_npm/@vant/weapp/dialog/dialog';
+
 export function showToast(params) {
   const options = {
     title: '',
@@ -16,17 +18,32 @@ export function showToast(params) {
   });
 }
 
-export const alert = (content, opts = {}) => {
-  return wx.showModal({
+/**
+ * 使用该方法需要在wxml内包含以下组件
+ * <van-dialog id="van-dialog" />
+ */
+export const alert = (message, options = {}) => {
+  return Dialog.alert({
     title: '提示',
-    content,
-    confirmText: '我知道了',
-    showCancel: false,
-    ...opts
+    message,
+    confirmButtonText: '我知道了',
+    ...options
   });
 };
 
-export function autoLoading(target, options = {}) {
+/**
+ * 使用该方法需要在wxml内包含以下组件
+ * <van-dialog id="van-dialog" />
+ */
+export const confirm = (message, title, options = {}) => {
+  return Dialog.confirm({
+    title,
+    message,
+    ...options
+  });
+};
+
+export function loading(target, options = {}) {
   const action = target instanceof Function ? target() : target;
   if (!(action instanceof Promise)) {
     return action;
@@ -57,7 +74,7 @@ function retryHandler(err, target, options) {
       })
       .then(({ confirm }) => {
         if (confirm) {
-          return autoLoading(target, options);
+          return loading(target, options);
         }
       });
   }
@@ -71,8 +88,11 @@ export function errHandler(err) {
   msg = timeoutErrors.test(msg) ? '网络好像出了点问题，请稍后再试' : msg;
   if (!ignoreErrors.test(msg)) {
     msg &&
-      alert(msg, {
-        title: '请求失败'
+      wx.showModal({
+        title: '请求失败',
+        content: msg,
+        confirmText: '我知道了',
+        showCancel: false
       });
   }
   throw err;

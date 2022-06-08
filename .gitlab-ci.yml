@@ -1,0 +1,65 @@
+# 阶段
+stages:
+  - install
+  - test
+  - build
+  - deploy
+
+# 缓存 node_modules 减少打包时间
+cache:
+  key: node_modules
+  paths:
+    - node_modules/
+
+# 安装依赖
+install:
+  stage: install
+  # 注册 runner 时设置的标签
+  tags:
+    - deploy-runner
+  # 执行脚本
+  script:
+    - npm install
+  # 规定仅在 package.json 更新时才触发此阶段
+  only:
+    changes:
+      - package.json
+
+# 测试项目
+test:
+  stage: test
+  tags:
+    - deploy-runner
+  script:
+    - npm run lint
+    - npm run lint:style
+  # 规定除以下分支都执行此阶段
+  except:
+    - /^branch_.*$/
+    - staging
+    - master
+
+# 打包项目
+build:
+  stage: build
+  tags:
+    - deploy-runner
+  # 规定仅在 staging 分支更新时才触发此阶段
+  only:
+    - staging
+  script:
+    - npm run build
+  # 将此阶段产物传递至下一阶段
+  artifacts:
+    paths:
+      - dist/
+
+# 部署项目
+deploy:
+  stage: deploy
+  tags:
+    - deploy-runner
+  only:
+    - staging
+  script:
+    - npm run upload:auto

@@ -1,6 +1,5 @@
 import { CURRENT_PAGE_PATH_KEY } from '@/constants/index';
-import { userAgent, sleep } from '@/utils/index';
-import { store } from '@/store/index';
+import { userAgent } from '@/utils/index';
 
 export function setCurrentPagePath(path) {
   wx.removeStorageSync(CURRENT_PAGE_PATH_KEY);
@@ -22,9 +21,6 @@ export async function relaunchCurrentPage() {
    * 作用：防止页面在跳转前渲染首页的内容
    */
   if (platform !== 'devtools' && !isScene && !regExp.test(currentPagePath)) {
-    store.setState({ loading: true });
     currentPagePath && wx.reLaunch({ url: currentPagePath });
-    await sleep(1000);
-    store.setState({ loading: false });
   }
 }

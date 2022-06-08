@@ -1,11 +1,14 @@
 {
-  "pages": ["pages/index/index"],
+  "pages": ["pages/index/index", "pages/webview/webview"],
   "subpackages": [
     {
       "root": "pages-extra/complaints",
       "pages": ["index/index", "form/form", "success/success"]
     }
   ],
+  "usingComponents": {
+    "van-dialog": "@vant/weapp/dialog/index"
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

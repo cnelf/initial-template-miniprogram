@@ -5,12 +5,12 @@ Component({
   behaviors: [computedBehavior],
 
   properties: {
-    current: {
+    pageIndex: {
       // 当前页
       type: Number,
       value: 1
     },
-    size: {
+    pageSize: {
       // 每页条数
       type: Number,
       value: 10
@@ -41,20 +41,20 @@ Component({
     safeBottom: 0,
     loading: false, // 正在加载
     refresherTriggered: false,
-    scrollTopTriggered: false,
+    showScrollTop: false,
     scrollTop: 0
   },
 
   computed: {
+    // 已加载完
     ended(data) {
-      // 已加载完
-      const { current, size, total } = data;
-      return current * size >= total;
+      const { pageIndex, pageSize, total } = data;
+      return pageIndex * pageSize >= total;
     }
   },
 
   observers: {
-    current: function () {
+    pageIndex: function () {
       this.setData({ loading: false });
     }
   },
@@ -68,11 +68,11 @@ Component({
   methods: {
     handleScroll(e) {
       const { scrollTop } = e.detail;
-      if (!this.data.scrollTopTriggered && scrollTop > 500) {
-        this.setData({ scrollTopTriggered: true });
+      if (!this.data.showScrollTop && scrollTop > 500) {
+        this.setData({ showScrollTop: true });
       }
-      if (this.data.scrollTopTriggered && scrollTop <= 500) {
-        this.setData({ scrollTopTriggered: false });
+      if (this.data.showScrollTop && scrollTop <= 500) {
+        this.setData({ showScrollTop: false });
       }
     },
 
@@ -80,15 +80,13 @@ Component({
       const { loading, ended } = this.data;
       if (!loading && !ended) {
         this.setData({ loading: true });
-        this.triggerEvent('load-more', { pageIndex: this.data.current + 1, size: this.data.size });
+        this.triggerEvent('load-more');
       }
     },
 
-    async handleRefresherRefresh() {
-      const curPage = getCurrentPages().pop();
-      // 当前页面必须实现initData方法
-      typeof curPage.initData === 'function' && (await curPage.initData());
+    handleRefresherRefresh() {
       this.setData({ refresherTriggered: false });
+      this.triggerEvent('refresh');
     },
 
     handleScrollTop() {
