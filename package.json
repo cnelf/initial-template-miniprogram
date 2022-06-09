@@ -6,6 +6,7 @@
     "start": "npm run dev",
     "dev": "gulp dev",
     "build": "gulp build",
+    "commit": "git-cz",
     "upload": "node ./scripts/upload.js",
     "upload:auto": "node ./scripts/upload-auto.js",
     "prettier": "prettier --write .",
@@ -13,6 +14,11 @@
     "lint:fix": "eslint src --fix",
     "lint:style": "stylelint \"**/*.{css,less,scss,postcss}\" --no-fix --max-warnings 0",
     "lint:style:fix": "stylelint \"**/*.{css,less,scss,postcss}\" --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog-zh"
+    }
   },
   "husky": {
     "hooks": {
@@ -44,6 +50,8 @@
     "wxministore": "^1.3.1"
   },
   "devDependencies": {
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog-zh": "0.0.2",
     "del": "^6.0.0",
     "eslint": "^7.32.0",
     "eslint-config-huaer": "^1.0.3",
